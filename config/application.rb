@@ -38,7 +38,7 @@ module Battleships
 
     # Configure generators
     config.generators do |g|
-      g.stylesheets false
+      g.stylesheets true
       g.template_engine :haml
       g.test_framework :rspec
     end
