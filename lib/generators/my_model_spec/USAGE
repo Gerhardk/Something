@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate my_model_spec Thing
+
+    This will create:
+        what/will/it/create

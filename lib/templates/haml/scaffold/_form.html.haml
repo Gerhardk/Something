@@ -1,0 +1,16 @@
+= form_for @<%= singular_table_name %> do |f|
+  -if @<%= singular_table_name %>.errors.any?
+    #error_explanation
+      %strong= "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
+      %ol
+        - @<%= singular_table_name %>.errors.full_messages.each do |msg|
+          %li= msg
+
+<% for attribute in attributes -%>
+  %p.field
+    = f.label :<%= attribute.name %>
+    <br />    
+    = f.<%= attribute.field_type %> :<%= attribute.name %>
+<% end -%>
+  .actions
+    = f.submit

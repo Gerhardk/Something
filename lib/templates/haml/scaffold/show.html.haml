@@ -1,0 +1,15 @@
+%h1 <%= singular_table_name %>
+%p
+  = link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
+  |
+  = link_to 'Back', :back
+
+<% for attribute in attributes -%>
+%p
+  %b <%= attribute.human_name %>
+  <br />
+  = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+
+

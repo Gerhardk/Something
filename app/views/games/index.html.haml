@@ -1,0 +1,19 @@
+%h1 Listing games
+%p
+  = link_to 'New Game', new_game_path
+  |
+  = link_to "Back", :back      
+%table.dataTable
+  %tr
+    %th
+    %th
+
+
+  - @games.each do |game|
+    %tr
+
+      %td= link_to 'Edit', edit_game_path(game)
+      %td= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

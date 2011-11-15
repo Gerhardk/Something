@@ -1,0 +1,251 @@
+require 'spec_helper'
+
+describe <%= class_name.pluralize %>Controller do
+  integrate_views
+
+  before do
+    @<%= class_name.underscore %> = Factory(:<%= class_name.underscore %>)
+  end
+
+  describe "GET 'index'" do
+    it "assigns a @<%= class_name.underscore.pluralize %>_variable" do
+      get :index
+      assigns[:<%= class_name.underscore.pluralize %>].should == [@<%= class_name.underscore %>]
+    end
+  end
+
+  describe "GET 'new'" do
+   it "assigns a new @<%= class_name.underscore %>_variable" do
+      get :new
+      assigns[:<%= class_name.underscore %>].should_not be_nil
+      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+      assigns[:<%= class_name.underscore %>].should be_new_record
+    end
+  end
+
+  describe "GET 'edit'" do
+    it "assigns a @<%= class_name.underscore %> variable" do
+      get :edit, :id=>@<%= class_name.underscore %>.id
+      assigns[:<%= class_name.underscore %>].should == @<%= class_name.underscore %>
+    end
+  end
+
+  describe "POST 'create'" do
+    it "assigns a @<%= class_name.underscore %> variable" do
+      post :create
+      assigns[:<%= class_name.underscore %>].should_not be_nil
+      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+    end
+
+    context "success" do
+      before do
+        @post_params = {:<%= class_name.underscore %> => {:name => "Test <%= class_name %>"}}
+        post :create, @post_params
+      end
+
+      it "should redirect to index with a flash message" do
+        response.should redirect_to(<%= class_name.underscore.pluralize %>_path)
+        flash[:notice].should_not be_nil
+      end
+
+      it "should create a new <%= class_name.underscore %> record" do
+         assigns[:<%= class_name.underscore %>].should_not be_new_record
+      end
+    end
+
+    context "failure" do
+      before do
+        @post_params = {:<%= class_name.underscore %> => {:name => ""}}
+        post :create, @post_params
+      end
+
+      it "should re-render 'new'" do
+        response.should render_template(:new)
+      end
+
+      it "should not create a new <%= class_name.underscore %> record" do
+         assigns[:<%= class_name.underscore %>].should be_new_record
+      end
+    end
+  end
+
+  describe "PUT 'update'" do
+    it "assigns a @<%= class_name.underscore %> variable" do
+      put :update, :id=>@<%= class_name.underscore %>.id
+      assigns[:<%= class_name.underscore %>].should_not be_nil
+      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+    end
+
+    context "success" do
+      before do
+        @post_params = {:id=>@<%= class_name.underscore %>.id, :<%= class_name.underscore %> => {:name => "Modified Test <%= class_name %> Name"}}
+        put :update, @post_params
+      end
+
+      it "should redirect to index with a flash message" do
+        response.should redirect_to(<%= class_name.underscore.pluralize %>_path)
+        flash[:notice].should_not be_nil
+      end
+
+      it "should modify <%= class_name.underscore %> record" do
+         assigns[:<%= class_name.underscore %>].name.should == "Modified Test <%= class_name %> Name"
+      end
+    end
+
+    context "failure" do
+      before do
+        @post_params = {:id=>@<%= class_name.underscore %>.id, :<%= class_name.underscore %> => {:name => ""}}
+        put :update, @post_params
+      end
+
+      it "should re-render 'edit'" do
+        response.should render_template(:edit)
+      end
+
+      it "should not modify <%= class_name.underscore %> record" do
+         assigns[:<%= class_name.underscore %>].should_not == ""
+      end
+    end
+  end
+
+  describe "DELETE 'delete'" do
+    it "should remove the record" do
+      lambda {
+        delete 'destroy', :id=>@<%= class_name.underscore %>.id
+      }.should change(<%= class_name %>, :count).by(-1)
+    end
+
+    it "should redirect to index with flash message" do
+      delete 'destroy', :id=>@<%= class_name.underscore %>.id
+      response.should redirect_to(<%= class_name.underscore.pluralize %>_path)
+      flash[:notice].should_not be_nil
+    end
+  end
+
+####################################< Ajax >###########################################################
+
+#  describe "GET 'index'" do
+#    it "assigns a @<%= class_name.underscore.pluralize %>_variable" do
+#      xhr :get, :index
+#      assigns[:<%= class_name.underscore.pluralize %>].should == [@<%= class_name.underscore %>]
+#    end
+#  end
+#
+#  describe "GET 'new'" do
+#   it "assigns a new @<%= class_name.underscore %>_variable" do
+#      xhr :get, :new
+#      assigns[:<%= class_name.underscore %>].should_not be_nil
+#      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+#      assigns[:<%= class_name.underscore %>].should be_new_record
+#    end
+#  end
+#
+#  describe "GET 'edit'" do
+#    it "assigns a @<%= class_name.underscore %> variable" do
+#      xhr :get, :edit, :id=>@<%= class_name.underscore %>.id
+#      assigns[:<%= class_name.underscore %>].should == @<%= class_name.underscore %>
+#    end
+#  end
+#
+#  describe "POST 'create'" do
+#    it "assigns a @<%= class_name.underscore %> variable" do
+#      xhr :post, :create
+#      assigns[:<%= class_name.underscore %>].should_not be_nil
+#      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+#    end
+#
+#    context "success" do
+#      before do
+#        @post_params = {:<%= class_name.underscore %> => {:name => "Test <%= class_name %>"}}
+#        xhr :post, :create, @post_params
+#      end
+#
+#      it "should render create with a flash message" do
+#        response.should render_template(:create)
+#        flash[:notice].should_not be_nil
+#      end
+#
+#      it "should create a new <%= class_name.underscore %> record" do
+#         assigns[:<%= class_name.underscore %>].should_not be_new_record
+#      end
+#    end
+#
+#    context "failure" do
+#      before do
+#        @post_params = {:<%= class_name.underscore %> => {:name => ""}}
+#        xhr :post, :create, @post_params
+#      end
+#
+#      it "should re-render 'new'" do
+#        response.should render_template(:new)
+#      end
+#
+#      it "should create a new <%= class_name.underscore %> record" do
+#         assigns[:<%= class_name.underscore %>].should be_new_record
+#      end
+#    end
+#  end
+#
+#  describe "PUT 'update'" do
+#    it "assigns a @<%= class_name.underscore %> variable" do
+#      xhr :put, :update, :id=>@<%= class_name.underscore %>.id
+#      assigns[:<%= class_name.underscore %>].should_not be_nil
+#      assigns[:<%= class_name.underscore %>].should be_kind_of(<%= class_name %>)
+#    end
+#
+#    context "success" do
+#      before do
+#        @post_params = {:id=>@<%= class_name.underscore %>.id, :<%= class_name.underscore %> => {:name => "Modified Test <%= class_name %> Name"}}
+#        xhr :put, :update, @post_params
+#      end
+#
+#      it "should render update with a flash message" do
+#        response.should render_template(:update)
+#        flash[:notice].should_not be_nil
+#      end
+#
+#      it "should modify <%= class_name.underscore %> record" do
+#         assigns[:<%= class_name.underscore %>].name.should == "Modified Test <%= class_name %> Name"
+#      end
+#    end
+#
+#    context "failure" do
+#      before do
+#        @post_params = {:id=>@<%= class_name.underscore %>.id, :<%= class_name.underscore %> => {:name => ""}}
+#        xhr :put, :update, @post_params
+#      end
+#
+#      it "should re-render 'edit'" do
+#        response.should render_template(:edit)
+#      end
+#
+#      it "should not modify <%= class_name.underscore %> record" do
+#         assigns[:<%= class_name.underscore %>].should_not == ""
+#      end
+#    end
+#  end
+#
+#  describe "DELETE 'delete'" do
+#    it "should remove the record" do
+#      lambda {
+#        xhr :delete, 'destroy', :id=>@<%= class_name.underscore %>.id
+#      }.should change(<%= class_name %>, :count).by(-1)
+#    end
+#
+#    it "should render delete with flash message" do
+#      xhr :delete, 'destroy', :id=>@<%= class_name.underscore %>.id
+#      response.should render_template(:delete)
+#      flash[:notice].should_not be_nil
+#    end
+#  end
+#
+#  describe "POST 'sort'" do
+#    it "should adjust the positions of the <%= class_name %> records according to the post param array" do
+#      <%= class_name.underscore %>_2 = Factory(:<%= class_name.underscore %>)
+#      post_params = {:<%= class_name.underscore %> => [<%= class_name.underscore %>_2.id.to_s, @<%= class_name.underscore %>.id.to_s]}
+#      xhr :post, 'sort', post_params
+#      <%= class_name %>.all.should == [<%= class_name.underscore %>_2, @<%= class_name.underscore %>]
+#    end
+#  end
+
+end
