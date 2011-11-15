@@ -6,3 +6,4 @@ tmp/
 .idea/
 log/
 .gitkeep
+db/schema.rb
