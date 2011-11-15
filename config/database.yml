@@ -1,0 +1,51 @@
+# If you are using mssql, derby, hsqldb, h2 or oracle with one of the
+# ActiveRecord JDBC adapters, configure your database setting as the
+# example below. (Note that for oracle you will need to include the
+# driver jar on the classpath.):
+#
+#development:
+# adapter: mssql
+# username: <username>
+# password: <password>
+# host: localhost
+# database: dummy
+
+# If you are using db2, sybase, informix or prefer to directly specify
+# the JDBC connection information, configure your database setting as
+# the example below (requires you to download and manually install the
+# database vendor's JDBC driver .jar file). See your driver
+# documentation for the apropriate driver class and connection string:
+#
+#development:
+# adapter: jdbc
+# username: <username>
+# password: <password>
+# driver: com.ibm.db2.jcc.DB2Driver
+# url: jdbc:db2://localhost:5021/dummy
+
+# SQLite version 3.x
+# gem install sqlite3
+development:
+  adapter: sqlserver
+  dsn: battleships_development
+  mode: odbc
+  database: battleships_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  development:
+    adapter: sqlserver
+    dsn: battleships_test
+    mode: odbc
+    database: battleships_test
+
+
+production:
+  adapter: jdbc
+  driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://localhost;integratedSecurity=true;databaseName=battleships_development
+
+
+
