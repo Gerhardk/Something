@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Ship do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Validations" do
+    it "should create ship instance given valid attributes" do
+      lambda { Factory.create(:ship) }.should change(Ship, :count).by(1)
+    end
+  end
 end
