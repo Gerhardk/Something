@@ -32,7 +32,7 @@ gem "inherited_resources"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :development,:test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem "rspec-rails", "~> 2.7.0"
@@ -40,6 +40,7 @@ group :test do
   gem "fuubar", "~> 0.0.5"
   #gem 'nokogiri', "~> 1.5.0"
   gem 'representative'
+  gem "guard-rspec"
 
 
 end
