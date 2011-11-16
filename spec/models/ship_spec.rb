@@ -6,7 +6,7 @@ describe Ship do
       lambda { Factory.create(:ship) }.should change(Ship, :count).by(1)
     end
 
-    [:name, :length].each do |attr|
+    [:name, :length, :max_per_game].each do |attr|
       it "must have a #{attr}" do
         s = Ship.new
         s.should_not be_valid
