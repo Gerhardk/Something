@@ -35,11 +35,10 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  development:
-    adapter: sqlserver
-    dsn: battleships_test
-    mode: odbc
-    database: battleships_test
+  adapter: sqlserver
+  dsn: battleships_test
+  mode: odbc
+  database: battleships_test
 
 
 production:
