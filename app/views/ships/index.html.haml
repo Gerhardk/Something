@@ -1,0 +1,23 @@
+%h1 Listing ships
+%p
+  = link_to 'New Ship', new_ship_path
+  |
+  = link_to "Back", :back      
+%table.dataTable
+  %tr
+    %th Name
+    %th Length
+    %th
+    %th
+
+
+  - @ships.each do |ship|
+    %tr
+      %td= ship.name
+      %td= ship.length
+
+      %td= link_to 'Edit', edit_ship_path(ship)
+      %td= link_to 'Destroy', ship, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

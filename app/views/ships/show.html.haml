@@ -1,0 +1,17 @@
+%h1 ship
+%p
+  = link_to 'Edit', edit_ship_path(@ship)
+  |
+  = link_to 'Back', :back
+
+%p
+  %b Name
+  <br />
+  = @ship.name
+%p
+  %b Length
+  <br />
+  = @ship.length
+
+
+
