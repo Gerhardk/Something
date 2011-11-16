@@ -1,4 +1,6 @@
 Battleships::Application.routes.draw do
+  resources :ships
+
   resources :games do
     post :register, :on => :member
     post :nuke, :on => :member
