@@ -4,9 +4,15 @@ gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+platforms :jruby do
+  gem "activerecord-jdbc-adapter", "~> 1.2.0"
+  gem "jdbc-mysql", "~> 5.1.13"
+end
 
-gem 'activerecord-sqlserver-adapter'
-gem 'ruby-odbc'
+platforms :ruby do
+  gem 'activerecord-sqlserver-adapter'
+  gem 'ruby-odbc'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,11 +26,13 @@ gem 'jquery-rails'
 gem "haml-rails", "~> 0.3.4"
 gem "haml", "~> 3.1.3"
 gem "inherited_resources"
+gem "formtastic", "~> 1.2.4"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+#gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
