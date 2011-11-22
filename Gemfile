@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem "haml-rails", "~> 0.3.4"
 gem "haml", "~> 3.1.3"
 gem "inherited_resources"
+
+gem "stateflow"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -41,6 +43,7 @@ group :development,:test do
   #gem 'nokogiri', "~> 1.5.0"
   gem 'representative'
   gem "guard-rspec"
-
-
+  #gem 'guard-livereload'
+#
+#
 end
