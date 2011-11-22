@@ -4,15 +4,15 @@ gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-platforms :jruby do
-  gem "activerecord-jdbc-adapter", "~> 1.2.0"
-  gem "jdbc-mysql", "~> 5.1.13"
-end
+#platforms :jruby do
+#  gem "activerecord-jdbc-adapter", "~> 1.2.0"
+#  gem "jdbc-mysql", "~> 5.1.13"
+#end
 
-platforms :ruby do
+#platforms :ruby do
   gem 'activerecord-sqlserver-adapter'
   gem 'ruby-odbc'
-end
+#end
 
 # Gems used only for assets and not required
 # in production environments by default.
