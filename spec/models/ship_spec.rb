@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ship do
-  context "Validations" do
+  context "(Validations)" do
     it "should create ship instance given valid attributes" do
       lambda { Factory.create(:ship) }.should change(Ship, :count).by(1)
     end
@@ -23,4 +23,15 @@ describe Ship do
       end
     end
   end
+
+  context "(Assiocations)" do
+    it "has many game_ships" do
+      should respond_to(:game_ships)
+    end
+
+    it "has many games" do
+      should respond_to(:games)
+    end
+  end
+
 end

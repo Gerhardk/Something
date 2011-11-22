@@ -1,10 +1,21 @@
-= form_for @game do |f|
+= semantic_form_for @game do |f|
   -if @game.errors.any?
     #error_explanation
       %strong= "#{pluralize(@game.errors.count, "error")} prohibited this game from being saved:"
       %ol
         - @game.errors.full_messages.each do |msg|
           %li= msg
+  =f.inputs "Details" do
+    =f.label :name
+    %br
+    = f.text_field :name
+    %br
+    = f.label :email
+    %br
+    = f.text_field :email
 
-  .actions
-    = f.submit
+
+
+
+  %br
+  = f.submit

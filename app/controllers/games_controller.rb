@@ -1,4 +1,5 @@
 class GamesController < InheritedResources::Base
+
   def register
 
   end

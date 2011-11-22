@@ -10,7 +10,7 @@ class Game < ActiveRecord::Base
   stateflow do
     state_column :status
     initial :in_progress
-    state :won, :lost
+    state :in_progress,:won, :lost
 
     event :win_game do
       transitions :from => :in_progress, :to => :won

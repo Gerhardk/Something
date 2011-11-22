@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe Game do
-  context "Validations" do
+  context "(Validations)" do
     it "should create game instance given valid attributes" do
-      lambda { Factory.create!(:game) }.should change(Game, :count).by(1)
+      lambda { Factory.create(:game) }.should change(Game, :count).by(1)
     end
 
     it "should give correct state to game" do
-      Factory.create!(:game).status.should == "in_progress"
+      game = Factory.create(:game)
+      game.reload.should be_valid
+      game.status.should == "in_progress"
     end
 
     [:name, :email].each do |attr|

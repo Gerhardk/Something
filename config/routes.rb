@@ -4,9 +4,10 @@ Battleships::Application.routes.draw do
   resources :ships
 
   resources :games do
-    post :register, :on => :member
+    post :register, :on => :collection, :as => :create
     post :nuke, :on => :member
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
