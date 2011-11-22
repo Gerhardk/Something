@@ -1,0 +1,10 @@
+= form_for @nuke do |f|
+  -if @nuke.errors.any?
+    #error_explanation
+      %strong= "#{pluralize(@nuke.errors.count, "error")} prohibited this nuke from being saved:"
+      %ol
+        - @nuke.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit

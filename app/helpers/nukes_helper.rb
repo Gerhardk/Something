@@ -1,0 +1,2 @@
+module NukesHelper
+end

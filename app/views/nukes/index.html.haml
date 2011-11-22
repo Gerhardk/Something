@@ -1,0 +1,19 @@
+%h1 Listing nukes
+%p
+  = link_to 'New Nuke', new_nuke_path
+  |
+  = link_to "Back", :back      
+%table.dataTable
+  %tr
+    %th
+    %th
+
+
+  - @nukes.each do |nuke|
+    %tr
+
+      %td= link_to 'Edit', edit_nuke_path(nuke)
+      %td= link_to 'Destroy', nuke, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
