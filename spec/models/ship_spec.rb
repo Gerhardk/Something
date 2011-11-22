@@ -13,5 +13,14 @@ describe Ship do
         s.errors[attr].should_not be_nil
       end
     end
+
+    [:length, :max_per_game].each do |attr|
+      specify "requires #{attr} to be numerical" do
+        s = Ship.new
+        s[attr] = "ABC"
+        s.should_not be_valid
+        s.errors[attr].should_not be_empty
+      end
+    end
   end
 end
