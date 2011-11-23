@@ -36,13 +36,11 @@ function ShipsDroppables() {
                 data: data_for,
                 beforeSend: function() {
                   document.body.style.cursor = 'wait';
-                  $("#lightbox_content_small").html('<img src="app/assets/images/ajax-loader.gif"/>');
-                  $("#lightbox_small").show();
+
                 },
                 complete: function() {
                   document.body.style.cursor = 'auto';
-                  $("#lightbox_content_small").html('');
-                  $("#lightbox_small").hide();
+
                 },
                 url: '/game_ships/'
             });

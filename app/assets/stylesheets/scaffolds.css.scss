@@ -66,7 +66,6 @@ div {
   text-align: center;
 
 }
-
 #work-area{
   width: 1100px;
   left: 50%;
@@ -75,8 +74,112 @@ div {
   margin-top: 20px;
   min-height: 500px;
   margin-bottom: 100px;
-  background-color: #fff
 }
 .work-panel{
+   .corner{
+     height: 30px;
+     width: 30px
+   }
+   .top-left-corner{
+     background-color: transparent;
+     background-image: url(/assets/top-left-corner.png) ;
+   }
+   .top-right-corner{
+     background-color: transparent;
+     background-image: url(/assets/top-right-corner.png);
+   }
+   .top-right-corner-close{
+     background-color: transparent;
+     background-image: url(/assets/top-right-corner-close.png);
+   }
+   .bottom-right-corner{
+     background-color: transparent;
+     background-image: url(/assets/bottom-right-corner.png);
+   }
+   .bottom-left-corner{
+     background-color: transparent;
+     background-image: url(/assets/bottom-left-corner.png);
+   }
 
+
+  td.left-side{
+    background: #fff;
+    background-image: url(/assets/panel_border.png);
+    background-position: left;
+    background-repeat: repeat-y;}
+  td.right-side{
+    background: #fff;
+    background-image: url(/assets/panel_border.png);
+    background-position: right;
+    background-repeat: repeat-y;}
+  td.top{
+    background: #fff;
+    background-image: url(/assets/panel_border.png);
+    background-position: top;
+    background-repeat: repeat-x}
+  td.bottom{
+    background: #fff;
+    background-image: url(/assets/panel_border.png);
+    background-position: bottom;
+    background-repeat: repeat-x;}
+  td.panel-content{
+    background: #fff;
+    height: 440px;
+    vertical-align: top;
+    .notice{
+      font-size: 0.8em}
+    #flash_notice{
+      color: green}
+    #flash_alert{
+      color: red}
+  }
+
+}
+
+#lightbox_small{
+  zoom: 1;
+  z-index: 3;
+
+  top: 150px;
+  bottom: 150px;
+
+  left: 50%;
+  margin-left: -350px;
+  width: 700px;
+
+  position: fixed;
+
+  input[type=text]{
+    width: 595px;
+  }
+  textarea{
+    width: 595px;
+  }
+  #lightbox_top_div{
+
+    #close_lightbox_small {
+      height: 30px;
+    }
+    height: 30px;
+  }
+  #lightbox_content_small{
+    background-color: #fff;
+    position: fixed;
+    top: 180px;
+    bottom: 180px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 636px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+  }
+  #lightbox_bottom_div{
+    position: fixed;
+    height: 30px;
+    bottom: 150px;
+    width: 700px;
+  }
 }

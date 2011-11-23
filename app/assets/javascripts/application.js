@@ -8,4 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree .
-
+function close_lightbox_small() {
+    $('#lightbox_small').hide();
+    $('#lightbox_content_small').html("");
+}

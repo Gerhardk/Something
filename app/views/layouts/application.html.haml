@@ -23,21 +23,21 @@
     #work-area
       %table#main-panel{:class=>"work-panel", :width=>"100%", :border=>"0", :cellpadding=>"2", :cellspacing=>"0"}
         %tr
-          %td{:class=>"corner top-left-corner"}
+
           %td.top
-          %td{:class=>"corner top-right-corner"}
+
         %tr
-          %td{:class=>"left-side"}
+
           %td{:class=>"panel-content"}
             %span.notice#flash_notice= notice
             %span.notice#flash_alert= alert
             .content#content
               = yield
-          %td{:class=>"right-side"}
+
         %tr
-          %td{:class=>"corner bottom-left-corner"}
+
           %td{:class=>"bottom"}
-          %td{:class=>"corner bottom-right-corner"}
+
 
     = render :partial=>"/layouts/lightbox_small"
 
