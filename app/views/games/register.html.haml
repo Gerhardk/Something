@@ -55,7 +55,7 @@
 
             -ship.max_per_game.times do |i|
               %td
-                .ships{:style => "height: 30px;width: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "horizontal", :game_id => @game.id}
+                .ships{:style => "height: 30px;width: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
                   &nbsp;
   %div{:style => "float: right; position: relative; top:19px"}
     %h4
@@ -70,7 +70,7 @@
               =ship.name
             -ship.max_per_game.times do |i|
               %span
-                .ships{:style => "width: 30px;height: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "vertical", :game_id => @game.id}
+                .ships{:style => "width: 30px;height: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id}
                   &nbsp;
                 %br
 :javascript
