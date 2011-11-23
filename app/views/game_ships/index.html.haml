@@ -1,0 +1,33 @@
+%h1 Listing game_ships
+%p
+  = link_to 'New Game ship', new_game_ship_path
+  |
+  = link_to "Back", :back      
+%table.dataTable
+  %tr
+    %th Game
+    %th Ship
+    %th Sunk
+    %th Hit count
+    %th Orientation
+    %th X
+    %th Y
+    %th
+    %th
+
+
+  - @game_ships.each do |game_ship|
+    %tr
+      %td= game_ship.game_id
+      %td= game_ship.ship_id
+      %td= game_ship.sunk
+      %td= game_ship.hit_count
+      %td= game_ship.orientation
+      %td= game_ship.x
+      %td= game_ship.y
+
+      %td= link_to 'Edit', edit_game_ship_path(game_ship)
+      %td= link_to 'Destroy', game_ship, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

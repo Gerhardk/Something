@@ -1,4 +1,6 @@
 Battleships::Application.routes.draw do
+  resources :game_ships
+
   resources :nukes
 
   resources :ships

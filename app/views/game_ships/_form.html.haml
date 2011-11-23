@@ -1,0 +1,38 @@
+= form_for @game_ship do |f|
+  -if @game_ship.errors.any?
+    #error_explanation
+      %strong= "#{pluralize(@game_ship.errors.count, "error")} prohibited this game_ship from being saved:"
+      %ol
+        - @game_ship.errors.full_messages.each do |msg|
+          %li= msg
+
+  %p.field
+    = f.label :game_id
+    <br />    
+    = f.number_field :game_id
+  %p.field
+    = f.label :ship_id
+    <br />    
+    = f.number_field :ship_id
+  %p.field
+    = f.label :sunk
+    <br />    
+    = f.check_box :sunk
+  %p.field
+    = f.label :hit_count
+    <br />    
+    = f.number_field :hit_count
+  %p.field
+    = f.label :orientation
+    <br />    
+    = f.text_field :orientation
+  %p.field
+    = f.label :x
+    <br />    
+    = f.number_field :x
+  %p.field
+    = f.label :y
+    <br />    
+    = f.number_field :y
+  .actions
+    = f.submit

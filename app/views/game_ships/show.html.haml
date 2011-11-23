@@ -1,0 +1,37 @@
+%h1 game_ship
+%p
+  = link_to 'Edit', edit_game_ship_path(@game_ship)
+  |
+  = link_to 'Back', :back
+
+%p
+  %b Game
+  <br />
+  = @game_ship.game_id
+%p
+  %b Ship
+  <br />
+  = @game_ship.ship_id
+%p
+  %b Sunk
+  <br />
+  = @game_ship.sunk
+%p
+  %b Hit count
+  <br />
+  = @game_ship.hit_count
+%p
+  %b Orientation
+  <br />
+  = @game_ship.orientation
+%p
+  %b X
+  <br />
+  = @game_ship.x
+%p
+  %b Y
+  <br />
+  = @game_ship.y
+
+
+
