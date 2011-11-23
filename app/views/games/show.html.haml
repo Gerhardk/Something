@@ -1,9 +1,24 @@
-%h1 game
-%p
-  = link_to 'Edit', edit_game_path(@game)
-  |
-  = link_to 'Back', :back
+%h2 Game
+.enemy
+  %div{:style => "width: 125px;"}
+    %h3= "Enemy's Seas"
+  %table.enemy_board
+    -10.times do |i|
+      %tr.line_one
+        -10.times do |k|
+          %td.attack_area{:id => "enemy_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
 
+.player
+  %div{:style => "width: 125px;"}
+    %h3= "Player "
 
+  %table.player_board
+    -10.times do |i|
+      %tr.line_one
+        -10.times do |k|
+          %td.player_attack_area{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
 
-
+  .ships{:style => "position: absolute; right: 600px; top:587px"}
+    -Ship.all.each do |ship|
+      %div
+        =ship.name

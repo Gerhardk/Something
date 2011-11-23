@@ -2,18 +2,22 @@
 %p
   = link_to 'New Game', new_game_path
   |
-  = link_to "Back", :back      
-%table.dataTable
-  %tr
-    %th
-    %th
-
-
-  - @games.each do |game|
+  = link_to "Back", :back
+-if !@games.empty?
+  %table.dataTable
     %tr
+      %th User Name
+      %th User Email
+      %th
+      %th
 
-      %td= link_to 'Edit', edit_game_path(game)
-      %td= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete
+
+    - @games.each do |game|
+      %tr
+        %td= game.name
+        %td= game.email
+        %td= link_to 'Edit', edit_game_path(game)
+        %td= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
