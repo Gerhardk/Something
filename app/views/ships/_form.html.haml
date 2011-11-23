@@ -1,18 +1,23 @@
-= form_for @ship do |f|
-  -if @ship.errors.any?
-    #error_explanation
-      %strong= "#{pluralize(@ship.errors.count, "error")} prohibited this ship from being saved:"
-      %ol
-        - @ship.errors.full_messages.each do |msg|
-          %li= msg
+%div{:style=> "margin-left: 15px"}
+  = form_for @ship do |f|
+    -if @ship.errors.any?
+      #error_explanation
+        %strong= "#{pluralize(@ship.errors.count, "error")} prohibited this ship from being saved:"
+        %ol
+          - @ship.errors.full_messages.each do |msg|
+            %li= msg
 
-  %p.field
-    = f.label :name
-    <br />    
-    = f.text_field :name
-  %p.field
-    = f.label :length
-    <br />    
-    = f.number_field :length
-  .actions
-    = f.submit
+    %p.field
+      = f.label :name
+      <br />
+      = f.text_field :name
+    %p.field
+      = f.label :length
+      <br />
+      = f.number_field :length
+    %p.field
+      = f.label :max_per_game
+      <br />
+      = f.number_field :max_per_game
+    .actions
+      = f.submit
