@@ -14,8 +14,8 @@
   }
 }
 .line_one{
-  width: 200px;
-  height: 20px;
+
+
 }
 .attack_area{
   width: 30px;
@@ -23,7 +23,24 @@
   border: 1px solid black
 }
 
+.player_attack_area{
+
+  height: 30px;
+  border: 1px solid black
+}
+
+.player_placement{
+
+  height: 30px;
+  border: 1px solid black
+}
+
 .enemy_board{
   width: 500px;
+  background-color:#618ade;
+}
+
+.player_board{
+  width: 300px;
   background-color:#618ade;
 }
