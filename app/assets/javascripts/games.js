@@ -1,13 +1,6 @@
 function ShipsDraggables() {
     $(".ships").draggable({
-        cursor: 'move',
-        stop: function() {
-                    var position = $(this).position();
-                    //alert(position.left.toFixed());
-                    //alert(position.top.toFixed());
-                    //$("#shaft_element_x").val(position.left.toFixed());
-                    //$("#shaft_element_y").val(position.top.toFixed());
-        }
+        cursor: 'move'
     });
 }
 
@@ -22,9 +15,8 @@ function ShipsDroppables() {
             var x = $(this).attr("data_x");
             var y = $(this).attr("data_y");
             var position = $(this).position();
-            alert(x);
-            alert(y);
             var ship_id = ui.draggable.attr("ship_id");
+            var orientation = ui.draggable.attr("orientation");
             data_for= {
                 game_ship: {
                     ship_id: ship_id,
@@ -32,7 +24,7 @@ function ShipsDroppables() {
                     hit_count: 0,
                     x: x,
                     y: y,
-                    orientation: "vertical"
+                    orientation: orientation
                 }
             }
             $.ajax({
