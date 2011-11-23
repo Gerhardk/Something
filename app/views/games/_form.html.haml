@@ -13,54 +13,5 @@
     = f.label :email
     %br
     = f.text_field :email
-  %h3= "Game Board"
-  %table.player_board{:border => 0, :cellpadding => 0, :cellspacing => 0}
-    -10.times do |i|
-      %tr.line_one
-        -10.times do |k|
-          %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
-            ="#{k}:#{i}"
 
-  %div{:style => "position: absolute; right: 600px; top:416px"}
-    %h3 Ship Details
-    %h4
-      ="Orientation : Horizontal"
-    %table
-      %tr
-        %td
-          ="Ship Name: "
-
-        %td
-
-      -Ship.all.each do |ship|
-        %tr
-          %td
-            =ship.name
-
-          -ship.max_per_game.times do |i|
-            %td
-              .ships{:style => "height: 30px;width: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "horizontal"}
-                &nbsp;
-  %div{:style => "position: absolute; right: 255px; top:454px"}
-    %h4
-      ="Orientation : Vertical"
-    %table
-      %tr
-
-        -Ship.all.each do |ship|
-          %td
-
-            %span
-              =ship.name
-            -ship.max_per_game.times do |i|
-              %span
-                .ships{:style => "width: 30px;height: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "vertical"}
-                  &nbsp;
-                %br
-  :javascript
-    $(function() {
-      ShipsDraggables();
-      ShipsDroppables();
-    });
-  %br
   = f.submit "Register Game"

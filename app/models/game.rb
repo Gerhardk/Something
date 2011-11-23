@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
-  has_many :nukes
-  has_many :game_ships
+  has_many :nukes, :dependent => :destroy
+  has_many :game_ships, :dependent => :destroy
   has_many :ships, :through => :game_ships
 
   validates :email, :presence => true

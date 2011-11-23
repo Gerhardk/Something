@@ -8,7 +8,7 @@ class GameShip < ActiveRecord::Base
     ship = Ship.find(self.ship_id)
 
     if GameShip.where(:ship_id => ship.id).count >= ship.max_per_game
-      self.errors.add(:base, "Max Number of ships per game reached")
+      Game.errors.add(:base, "Max Number of ships per game reached")
       return false
     end
   end
