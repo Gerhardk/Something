@@ -6,7 +6,7 @@ Battleships::Application.routes.draw do
   resources :ships
 
   resources :games do
-    post :register, :on => :collection
+    get :register, :on => :member
     post :nuke, :on => :member
   end
 
