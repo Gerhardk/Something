@@ -1,4 +1,4 @@
-= semantic_form_for @game, :url => { :action => "register" } do |f|
+= semantic_form_for @game do |f|
   -if @game.errors.any?
     #error_explanation
       %strong= "#{pluralize(@game.errors.count, "error")} prohibited this game from being saved:"
