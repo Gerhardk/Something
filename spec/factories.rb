@@ -10,3 +10,14 @@ Factory.define(:game) do |f|
   f.name "Gerhard Koekemoer"
 
 end
+
+Factory.define(:game_ship) do |f|
+  f.association :game
+  f.association :ship
+  f.hit_count 0
+  f.orientation "horizontal"
+  f.sunk false
+  f.x 0
+  f.y 0
+
+end
