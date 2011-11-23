@@ -18,7 +18,7 @@
         -10.times do |k|
           %td.player_attack_area{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
 
-  .ships{:style => "position: absolute; right: 600px; top:587px"}
+  .ships_show{:style => "position: absolute; right: 600px; top:587px"}
     -Ship.all.each do |ship|
-      %div
+      %div{:style => "background-color: #6d6969"}
         =ship.name
