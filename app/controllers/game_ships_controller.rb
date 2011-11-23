@@ -5,7 +5,7 @@ class GameShipsController < InheritedResources::Base
 
     @game_ship = GameShip.create(params[:game_ship])
     if @game_ship.id != nil
-      render :nothing => true
+      render :register
     else
       render :template => "game_ships/errors.js.erb"
     end

@@ -1,0 +1,80 @@
+-if game.errors.any?
+  #error_explanation
+    %strong= "#{pluralize(game.errors.count, "error")} prohibited this game from being saved:"
+    %ol
+      - game.errors.full_messages.each do |msg|
+        %li= msg
+
+
+%h3= "Game Board"
+%table.player_board{:border => 0, :cellpadding => 0, :cellspacing => 0}
+  -GameShip.where(:game_id => game.id).each do |game_ship|
+
+    ="x:#{game_ship.x}"
+    ="y:#{game_ship.y}"
+    =game_ship.orientation
+    =game_ship.ship.length
+    %br
+    -if game_ship.orientation == "horizontal"
+      %div{:style => "height: 30px;width: #{game_ship.ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969"}
+        &nbsp;
+    -else
+      %div{:style => "width: 30px;height: #{game_ship.ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969"}
+        &nbsp;
+
+  %tr{:style => "text-align: center"}
+    %td{:style => "background-color: #fff"}
+    -10.times do |g|
+      %td{:style => "background-color: #fff"}
+        ="#{g}"
+  -10.times do |i|
+    %tr.line_one
+      %td{:style => "background-color: #fff;padding-right: 2px"}
+        ="#{i}"
+      -10.times do |k|
+        %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}", :width => "30px"}
+          ="#{k}:#{i}"
+%div{:style => "position: absolute; right: 300px; top:170px"}
+  %h3 Ship Details
+  %strong="Note: Once Ships is placed it can not be moved"
+  %div{:style => "float: left; position: absolute"}
+    %h4
+      ="Orientation : Horizontal"
+    %table
+      %tr
+        %td
+          ="Ship Name: "
+
+        %td
+
+        -Ship.all.each do |ship|
+          %tr
+            %td
+              =ship.name
+
+            -ship.max_per_game.times do |i|
+              %td
+                .ships{:style => "height: 30px;width: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => game.id}
+                  &nbsp;
+  %div{:style => "float: right; position: relative; top:19px"}
+    %h4
+      ="Orientation : Vertical"
+    %table
+      %tr
+
+        -Ship.all.each do |ship|
+          %td
+
+            %span
+              =ship.name
+            -ship.max_per_game.times do |i|
+              %span
+                .ships{:style => "width: 30px;height: #{ship.length * 30}px; border: 1px solid black; padding: 0; margin: 0; background-color: #6d6969", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => game.id}
+                  &nbsp;
+                %br
+:javascript
+  $(function() {
+    ShipsDraggables();
+    ShipsDroppables();
+  });
+%br
