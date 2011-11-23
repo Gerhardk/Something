@@ -13,26 +13,38 @@ function ShipsDroppables() {
         accept: ".ships",
         drop: function(event, ui) {
             var data_for = {}
+            var max_per_game = parseInt(ui.draggable.attr("max_per_game"))
             var data_length = ui.draggable.attr("data_length")
+            var total_ships_game = parseInt(ui.draggable.attr("total_ships_game"))
             var x = $(this).attr("data_x");
             var y = $(this).attr("data_y");
             var orientation = ui.draggable.attr("orientation");
-
             if (data_length == 5 && orientation== "horizontal"){
-                x = x - 2
+                if (x != 0 || x != 1){
+
+                  x = x - 2
+                }
 
             } else if((data_length == 4 || data_length == 3 || data_length == 2)  && orientation== "horizontal") {
-                x = x - 1
+                if (x != 0 ){
 
-            } else if(data_length == 5 && orientation== "vertical"){
-                y = y - 2
+                  x = x - 1
+                }
+            } else if((data_length == 5 || data_length == 4 ) && orientation== "vertical"){
+                if (y != 0 || y != 1){
 
-            }else if((data_length == 4 || data_length == 3 || data_length == 2)  && orientation== "vertical"){
-                y = y - 2
+                  y = y - 2
+                }
 
+            }else if(( data_length == 3 || data_length == 2)  && orientation== "vertical"){
+
+                if (y != 0 ){
+
+                  y = y - 1
+                }
             }
 
-            var position = $(this).position();
+
             var ship_id = ui.draggable.attr("ship_id");
 
             var game_id = ui.draggable.attr("game_id");
@@ -47,6 +59,8 @@ function ShipsDroppables() {
                     game_id: game_id
                 }
             }
+
+
             $.ajax({
                 dataType: "script",
                 type: "Post",
@@ -57,6 +71,8 @@ function ShipsDroppables() {
                 },
                 complete: function() {
                   document.body.style.cursor = 'auto';
+
+                  draw_ships_for_game();
 
                 },
                 url: '/game_ships/'
