@@ -4,6 +4,9 @@ class GameShip < ActiveRecord::Base
 
   before_create :check_for_max_ships
 
+  validates :game_id, :presence => true
+  validates :ship_id, :presence => true
+
   def check_for_max_ships
     ship = Ship.find(self.ship_id)
 

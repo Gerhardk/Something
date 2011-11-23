@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe GameShip do
+  context "(Validations)" do
+    [:ship_id, :game_id].each do |attr|
+          it "must have a #{attr}" do
+            g = Game.new
+            g.should_not be_valid
+            g.errors[attr].should_not be_nil
+          end
+     end
+  end
+
   context "(Functionality)" do
     it "should create game_ships if max_per_game not maxed" do
       game_ship = Factory.create(:game_ship)

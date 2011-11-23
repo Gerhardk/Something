@@ -24,7 +24,7 @@ describe GamesController do
   # Game. As you add validations to Game, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:email => "rgkoek@yahoo.com", :name => "Gerhard"}
   end
 
   describe "GET index" do
@@ -74,7 +74,7 @@ describe GamesController do
 
       it "redirects to the created game" do
         post :create, :game => valid_attributes
-        response.should redirect_to(Game.last)
+        response.should redirect_to(register_game_path(Game.last))
       end
     end
 
@@ -116,7 +116,7 @@ describe GamesController do
       it "redirects to the game" do
         game = Game.create! valid_attributes
         put :update, :id => game.id, :game => valid_attributes
-        response.should redirect_to(game)
+        response.should redirect_to(games_path)
       end
     end
 

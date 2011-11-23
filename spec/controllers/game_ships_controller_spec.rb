@@ -24,12 +24,16 @@ describe GameShipsController do
   # GameShip. As you add validations to GameShip, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:game_id => Factory(:game).id,:ship_id => Factory(:ship).id,:hit_count => 0,:orientation => "horizontal",:sunk=> false, :x=> 0,:y=> 0}
+  end
+
+  def invalid_attributes
+    {:game_id => Factory(:game).id}
   end
 
   describe "GET index" do
     it "assigns all game_ships as @game_ships" do
-      game_ship = GameShip.create! valid_attributes
+      game_ship = Factory(:game_ship)
       get :index
       assigns(:game_ships).should eq([game_ship])
     end
@@ -37,7 +41,7 @@ describe GameShipsController do
 
   describe "GET show" do
     it "assigns the requested game_ship as @game_ship" do
-      game_ship = GameShip.create! valid_attributes
+      game_ship = Factory(:game_ship)
       get :show, :id => game_ship.id
       assigns(:game_ship).should eq(game_ship)
     end
@@ -52,7 +56,7 @@ describe GameShipsController do
 
   describe "GET edit" do
     it "assigns the requested game_ship as @game_ship" do
-      game_ship = GameShip.create! valid_attributes
+      game_ship = Factory(:game_ship)
       get :edit, :id => game_ship.id
       assigns(:game_ship).should eq(game_ship)
     end
@@ -74,7 +78,7 @@ describe GameShipsController do
 
       it "redirects to the created game_ship" do
         post :create, :game_ship => valid_attributes
-        response.should redirect_to(GameShip.last)
+        response.should render(:register)
       end
     end
 
@@ -82,7 +86,7 @@ describe GameShipsController do
       it "assigns a newly created but unsaved game_ship as @game_ship" do
         # Trigger the behavior that occurs when invalid params are submitted
         GameShip.any_instance.stub(:save).and_return(false)
-        post :create, :game_ship => {}
+        post :create, :game_ship => invalid_attributes
         assigns(:game_ship).should be_a_new(GameShip)
       end
 

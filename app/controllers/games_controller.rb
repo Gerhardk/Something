@@ -9,10 +9,24 @@ class GamesController < InheritedResources::Base
 
   def create
     @game = Game.create(params[:game])
-    redirect_to register_game_path(@game)
+    if @game.valid?
+      redirect_to register_game_path(@game)
+    else
+      render :new
+    end
   end
 
   def nuke
+
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    if @game.update_attributes(params[:game])
+      redirect_to games_path
+    else
+      render :edit
+    end
 
   end
 end
