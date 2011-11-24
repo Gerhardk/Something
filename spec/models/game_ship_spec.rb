@@ -18,11 +18,14 @@ describe GameShip do
 
     end
 
-    it "should  not create game_ships if max_per_game not maxed" do
-      game_ship = Factory.create(:game_ship)
-      game_ship.reload.should be_valid
-      game_ship2 = Factory.create(:game_ship)
-      game_ship2.reload.should_not be_valid
+    it "should  not create game_ships if max_per_game is maxed" do
+      lambda {
+        ship = Factory(:ship, :max_per_game => 1)
+        game = Factory(:game)
+        Factory.create(:game_ship, :ship_id => ship.id, :game_id => game.id)
+        GameShip.create(:game_id => game.id, :ship_id => ship.id)
+      }.should change(GameShip, :count).by(1)
+
 
     end
   end
