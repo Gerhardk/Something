@@ -14,6 +14,7 @@ class GameShipsController < InheritedResources::Base
   def destroy
     @game_ship = GameShip.find(params[:id])
     @game = @game_ship.game
+
     if @game_ship.destroy
       render :register
     else
@@ -25,6 +26,7 @@ class GameShipsController < InheritedResources::Base
   def edit
     @game_ship = GameShip.find(params[:id])
     @game = @game_ship.game
+
 
     render :edit
   end
