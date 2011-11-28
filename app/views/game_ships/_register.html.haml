@@ -101,6 +101,10 @@
       %td
         =link_to "Delete Ship", game_ship_path(:id => game_ship.id), :method => :delete, :remote => true
 
+#json_string{:style => "display:none"}
+  =@game.json_string
+%span=link_to "Register Game on Server", register_game_path(@game)
+
 
 
 
