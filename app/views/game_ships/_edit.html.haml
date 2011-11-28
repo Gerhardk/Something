@@ -1,0 +1,24 @@
+= form_for @game_ship, :remote => true do |f|
+  -if @game_ship.errors.any?
+    #error_explanation
+      %strong= "#{pluralize(@game_ship.errors.count, "error")} prohibited this game_ship from being saved:"
+      %ol
+        - @game_ship.errors.full_messages.each do |msg|
+          %li= msg
+
+
+
+  %p.field
+    = f.label :orientation
+    <br />
+    = f.text_field :orientation
+  %p.field
+    = f.label :x
+    <br />
+    = f.number_field :x
+  %p.field
+    = f.label :y
+    <br />
+    = f.number_field :y
+  .actions
+    = f.submit
