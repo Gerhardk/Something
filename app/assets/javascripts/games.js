@@ -1,6 +1,10 @@
 function ShipsDraggables() {
-    $(".ships").draggable({
+    $(".ships_vertical").draggable({
         cursor: 'move'
+
+    });
+    $(".ships_horizontal").draggable({
+            cursor: 'move'
 
     });
 }
@@ -10,7 +14,7 @@ function ShipsDroppables() {
 
         activeClass: 'active',
         hoverClass: "hover",
-        accept: ".ships",
+
         drop: function(event, ui) {
             var data_for = {}
             var max_per_game = parseInt(ui.draggable.attr("max_per_game"))
