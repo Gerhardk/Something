@@ -8,6 +8,7 @@ Battleships::Application.routes.draw do
   resources :games do
     get :register, :on => :member
     post :nuke, :on => :member
+    get :battle, :on => :member
   end
 
 
