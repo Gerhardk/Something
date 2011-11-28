@@ -6,6 +6,13 @@ class Game < ActiveRecord::Base
   validates :email, :presence => true
   validates :name, :presence => true
 
+  attr_accessor :json_string
+  after_find do |game|
+
+    game.json_string = ({"name"=>game.name, "email"=>game.email}).to_json
+
+  end
+
   include Stateflow
   stateflow do
     state_column :status
@@ -21,6 +28,8 @@ class Game < ActiveRecord::Base
     end
 
   end
+
+
 
 
 end
