@@ -76,6 +76,7 @@ div {
   margin-bottom: 100px;
 }
 .work-panel{
+
    .corner{
      height: 30px;
      width: 30px
@@ -125,6 +126,7 @@ div {
   td.panel-content{
     background: #fff;
     height: 440px;
+    padding: 10px;
     vertical-align: top;
     .notice{
       font-size: 0.8em}
@@ -182,4 +184,14 @@ div {
     bottom: 150px;
     width: 700px;
   }
+}
+
+.align_center{
+  text-align: center
+}
+.white{
+  background-color: #fff;
+  width : 30px;
+  height: 30px;
+  text-align: center
 }
