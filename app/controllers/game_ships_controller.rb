@@ -10,4 +10,32 @@ class GameShipsController < InheritedResources::Base
       render :template => "game_ships/errors.js.erb"
     end
   end
+
+  def destroy
+    @game_ship = GameShip.find(params[:id])
+    @game = @game_ship.game
+    if @game_ship.destroy
+      render :register
+    else
+      render :template => "game_ships/errors.js.erb"
+    end
+
+  end
+
+  def edit
+    @game_ship = GameShip.find(params[:id])
+    @game = @game_ship.game
+
+    render :edit
+  end
+
+  def update
+    @game_ship = GameShip.find(params[:id])
+    @game = @game_ship.game
+    if @game_ship.update_attributes(params[:game_ship])
+      render :register
+
+    end
+  end
+
 end
