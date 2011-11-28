@@ -24,7 +24,7 @@ describe ShipsController do
   # Ship. As you add validations to Ship, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => "Battleship", :length => 4, :max_per_game => 1}
   end
 
   describe "GET index" do
@@ -74,7 +74,7 @@ describe ShipsController do
 
       it "redirects to the created ship" do
         post :create, :ship => valid_attributes
-        response.should redirect_to(Ship.last)
+        response.should redirect_to(ships_path())
       end
     end
 
@@ -90,7 +90,7 @@ describe ShipsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Ship.any_instance.stub(:save).and_return(false)
         post :create, :ship => {}
-        response.should render_template("new")
+        response.should render("new")
       end
     end
   end
