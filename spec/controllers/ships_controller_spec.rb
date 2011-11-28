@@ -90,7 +90,7 @@ describe ShipsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Ship.any_instance.stub(:save).and_return(false)
         post :create, :ship => {}
-        response.should render("new")
+        response.should redirect_to(new_ship_path())
       end
     end
   end
@@ -134,7 +134,7 @@ describe ShipsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Ship.any_instance.stub(:save).and_return(false)
         put :update, :id => ship.id, :ship => {}
-        response.should render_template("edit")
+        response.should redirect_to(edit_ship_path(ship))
       end
     end
   end
