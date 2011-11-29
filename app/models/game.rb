@@ -13,11 +13,13 @@ class Game < ActiveRecord::Base
 
   end
 
+  after_update :check_server_hits, :check_client_hits
+
   include Stateflow
   stateflow do
     state_column :status
     initial :in_progress
-    state :in_progress,:won, :lost
+    state :in_progress, :won, :lost
 
     event :win_game do
       transitions :from => :in_progress, :to => :won
@@ -29,7 +31,16 @@ class Game < ActiveRecord::Base
 
   end
 
+  def check_server_hits
+    if self.server_hits == 18
+      self.lose_game!
+    end
+  end
 
-
+  def check_client_hits
+    if self.client_hits == 18
+      self.win_game!
+    end
+  end
 
 end

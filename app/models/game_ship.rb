@@ -7,6 +7,8 @@ class GameShip < ActiveRecord::Base
   validates :game_id, :presence => true
   validates :ship_id, :presence => true
 
+  after_update :check_if_ship_is_sunk
+
   def check_for_max_ships
     ship = Ship.find(self.ship_id)
 
@@ -16,5 +18,16 @@ class GameShip < ActiveRecord::Base
       return false
     end
   end
+
+  def check_if_ship_is_sunk
+    if self.sunk == false
+      if self.hit_count == self.ship.length
+        self.update_attributes(:sunk => true)
+
+      end
+    end
+  end
+
+
 
 end
