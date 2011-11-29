@@ -36,7 +36,8 @@ class GameShipsController < InheritedResources::Base
     @game = @game_ship.game
     if @game_ship.update_attributes(params[:game_ship])
       render :register
-
+    else
+      edit
     end
   end
 

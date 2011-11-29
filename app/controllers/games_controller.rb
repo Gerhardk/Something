@@ -24,7 +24,7 @@ class GamesController < InheritedResources::Base
     response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }
     server_game_id = ActiveSupport::JSON.decode(response.body)
     if server_game_id.has_key? "id"
-      @game.update_attributes(:server_game_id =>integer(server_game_id["id"]))
+      @game.update_attributes(:server_game_id =>Integer(server_game_id["id"]))
       redirect_to battle_game_path(@game)
     end
 
@@ -58,4 +58,6 @@ class GamesController < InheritedResources::Base
     end
 
   end
+
+
 end
