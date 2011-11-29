@@ -87,3 +87,36 @@ function ShipsDroppables() {
 
     })
 }
+
+function nuke_server(){
+  $(".attack_area").bind("click", function(){
+    var x = $(this).attr("data_x");
+    var y = $(this).attr("data_y");
+    alert(x);
+    alert(y);
+    var game_id = $(this).attr("data_game_id")
+    var server_nuke = false
+    var data_for_nuke = {
+        nuke: {
+          game_id: game_id,
+          x: x,
+          y: y,
+          server_nuke_boolean: server_nuke
+        }
+    }
+    $.ajax({
+      beforeSend: function() {
+        document.body.style.cursor = 'wait';
+
+      },
+      complete: function() {
+        document.body.style.cursor = 'auto';
+      },
+      dataType: "script",
+      type: "Post",
+      data: data_for_nuke,
+      url: '/nukes/'
+    });
+  });
+
+}
