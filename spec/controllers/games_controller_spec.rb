@@ -74,7 +74,7 @@ describe GamesController do
 
       it "redirects to the created game" do
         post :create, :game => valid_attributes
-        response.should redirect_to(register_game_path(Game.last))
+        response.should redirect_to(game_path(Game.last))
       end
     end
 

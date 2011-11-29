@@ -101,26 +101,18 @@ describe GameShipsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested game_ship" do
-        game_ship = GameShip.create! valid_attributes
-        # Assuming there are no other game_ships in the database, this
-        # specifies that the GameShip created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        GameShip.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => game_ship.id, :game_ship => {'these' => 'params'}
-      end
-
       it "assigns the requested game_ship as @game_ship" do
         game_ship = GameShip.create! valid_attributes
-        put :update, :id => game_ship.id, :game_ship => valid_attributes
+        xhr :put, :update, {:id => game_ship.id, :game_ship => valid_attributes}
         assigns(:game_ship).should eq(game_ship)
       end
 
       it "redirects to the game_ship" do
         game_ship = GameShip.create! valid_attributes
-        put :update, :id => game_ship.id, :game_ship => valid_attributes
-        response.should redirect_to(game_ship)
+        xhr :put, :update, {:id => game_ship.id, :game_ship => valid_attributes}
+        if game_ship.valid?
+          response.should render_template(:register)
+        end
       end
     end
 
@@ -147,14 +139,14 @@ describe GameShipsController do
     it "destroys the requested game_ship" do
       game_ship = GameShip.create! valid_attributes
       expect {
-        delete :destroy, :id => game_ship.id
+        xhr :delete, :destroy, {:id => game_ship.id}
       }.to change(GameShip, :count).by(-1)
     end
 
     it "redirects to the game_ships list" do
       game_ship = GameShip.create! valid_attributes
-      delete :destroy, :id => game_ship.id
-      response.should redirect_to(game_ships_url)
+      xhr :delete, :destroy,{:id => game_ship.id }
+      response.should render_template(:register)
     end
   end
 

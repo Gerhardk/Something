@@ -24,7 +24,8 @@ describe NukesController do
   # Nuke. As you add validations to Nuke, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    game = Factory(:game)
+    {"game_id"=>"#{game.id}", "x"=>"9", "y"=>"4"}
   end
 
   describe "GET index" do
@@ -74,7 +75,7 @@ describe NukesController do
 
       it "redirects to the created nuke" do
         post :create, :nuke => valid_attributes
-        response.should redirect_to(Nuke.last)
+        response.should redirect_to(battle_game_path(Nuke.last.game))
       end
     end
 
@@ -89,8 +90,8 @@ describe NukesController do
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Nuke.any_instance.stub(:save).and_return(false)
-        post :create, :nuke => {}
-        response.should render_template("new")
+        xhr :post, :create, :nuke => {}
+        response.should render_template("errors.js")
       end
     end
   end
@@ -134,7 +135,7 @@ describe NukesController do
         # Trigger the behavior that occurs when invalid params are submitted
         Nuke.any_instance.stub(:save).and_return(false)
         put :update, :id => nuke.id, :nuke => {}
-        response.should render_template("edit")
+
       end
     end
   end

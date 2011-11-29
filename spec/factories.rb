@@ -21,3 +21,9 @@ Factory.define(:game_ship) do |f|
   f.y 0
 
 end
+
+Factory.define(:nuke) do |f|
+  f.association :game
+  f.x 4
+  f.y 4
+end
