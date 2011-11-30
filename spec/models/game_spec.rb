@@ -36,4 +36,14 @@ describe Game do
 
   end
 
+  context "(Functionality)" do
+    game = Factory.create(:game)
+    ### total blocks
+    game.blocks.count.should == 200
+    ### server blocks
+    game.blocks.where(:server_board => true).count.should == 100
+    ### player blocks
+    game.blocks.where(:server_board => false).count.should == 100
+  end
+
 end
