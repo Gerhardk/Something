@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Ship do
+  after :all do
+     Game.destroy_all
+     Ship.destroy_all
+     Block.destroy_all
+   end
   context "(Validations)" do
     it "should create ship instance given valid attributes" do
       lambda { Factory.create(:ship) }.should change(Ship, :count).by(1)

@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe GameShip do
+  after :all do
+     Game.destroy_all
+     Ship.destroy_all
+     Block.destroy_all
+   end
   context "(Validations)" do
     [:ship_id, :game_id].each do |attr|
           it "must have a #{attr}" do

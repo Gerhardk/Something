@@ -8,8 +8,10 @@ describe Nuke do
   end
 
   after :all do
-    Game.destroy_all
-  end
+     Game.destroy_all
+     Ship.destroy_all
+     Block.destroy_all
+   end
 
   context "(Validations)" do
     it "should create game instance given valid attributes" do

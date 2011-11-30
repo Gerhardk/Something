@@ -11,6 +11,8 @@ describe Block do
 
   after :all do
     Game.destroy_all
+    Ship.destroy_all
+    Block.destroy_all
   end
 
   context "(Validations)" do
