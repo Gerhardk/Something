@@ -33,11 +33,17 @@ class Game < ActiveRecord::Base
   end
 
   def check_winner_of_game
-    if self.server_hits == 18
+
+    total_ships = 0
+    GameShip.where(:game_id => self.id).each do |game_ship|
+      total_ships += game_ship.ship.length
+    end
+
+    if self.server_hits == total_ships
       self.lose_game!
     end
 
-    if self.client_hits == 18
+    if self.client_hits == total_ships
       self.win_game!
     end
     self.save
