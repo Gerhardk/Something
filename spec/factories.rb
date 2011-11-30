@@ -9,6 +9,8 @@ Factory.define(:game) do |f|
   f.email "rgkoek@yahoo.com"
   f.name "Gerhard Koekemoer"
   f.server_game_id 1098
+  f.server_hits 0
+  f.client_hits 0
 end
 
 Factory.define(:game_ship) do |f|
