@@ -1,0 +1,31 @@
+%h1 Listing blocks
+%p
+  = link_to 'New Block', new_block_path
+  |
+  = link_to "Back", :back      
+%table.dataTable
+  %tr
+    %th Game
+    %th Game ship
+    %th X
+    %th Y
+    %th State
+    %th Server board
+    %th
+    %th
+
+
+  - @blocks.each do |block|
+    %tr
+      %td= block.game_id
+      %td= block.game_ship_id
+      %td= block.x
+      %td= block.y
+      %td= block.state
+      %td= block.server_board
+
+      %td= link_to 'Edit', edit_block_path(block)
+      %td= link_to 'Destroy', block, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

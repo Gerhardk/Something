@@ -1,0 +1,34 @@
+= form_for @block do |f|
+  -if @block.errors.any?
+    #error_explanation
+      %strong= "#{pluralize(@block.errors.count, "error")} prohibited this block from being saved:"
+      %ol
+        - @block.errors.full_messages.each do |msg|
+          %li= msg
+
+  %p.field
+    = f.label :game_id
+    <br />    
+    = f.number_field :game_id
+  %p.field
+    = f.label :game_ship_id
+    <br />    
+    = f.number_field :game_ship_id
+  %p.field
+    = f.label :x
+    <br />    
+    = f.number_field :x
+  %p.field
+    = f.label :y
+    <br />    
+    = f.number_field :y
+  %p.field
+    = f.label :state
+    <br />    
+    = f.text_field :state
+  %p.field
+    = f.label :server_board
+    <br />    
+    = f.check_box :server_board
+  .actions
+    = f.submit

@@ -1,0 +1,33 @@
+%h1 block
+%p
+  = link_to 'Edit', edit_block_path(@block)
+  |
+  = link_to 'Back', :back
+
+%p
+  %b Game
+  <br />
+  = @block.game_id
+%p
+  %b Game ship
+  <br />
+  = @block.game_ship_id
+%p
+  %b X
+  <br />
+  = @block.x
+%p
+  %b Y
+  <br />
+  = @block.y
+%p
+  %b State
+  <br />
+  = @block.state
+%p
+  %b Server board
+  <br />
+  = @block.server_board
+
+
+

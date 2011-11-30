@@ -8,7 +8,7 @@ end
 Factory.define(:game) do |f|
   f.email "rgkoek@yahoo.com"
   f.name "Gerhard Koekemoer"
-
+  f.server_game_id 1098
 end
 
 Factory.define(:game_ship) do |f|
@@ -26,4 +26,11 @@ Factory.define(:nuke) do |f|
   f.association :game
   f.x 4
   f.y 4
+end
+
+Factory.define(:block) do |f|
+  f.sequence(:x) {|n| n}
+  f.sequence(:y) {|n| n}
+  f.association :game
+
 end
