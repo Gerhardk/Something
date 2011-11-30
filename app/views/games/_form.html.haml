@@ -5,6 +5,8 @@
       %ol
         - @game.errors.full_messages.each do |msg|
           %li= msg
+  =f.hidden_field :client_hits, :value => 0
+  =f.hidden_field :server_hits, :value => 0
   =f.inputs "Details" do
     =f.label :name
     %br
