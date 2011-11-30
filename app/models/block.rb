@@ -5,18 +5,21 @@ class Block < ActiveRecord::Base
   validates :game_id, :presence => true
 
   include Stateflow
-    stateflow do
+  stateflow do
       state_column :state
-      initial :noe
-      state :none, :hit, :miss
+      initial :in_play
+      state :in_play, :hit, :miss
 
       event :hit_block do
-        transitions :from => :none, :to => :hit
+        transitions :from => :in_play, :to => :hit
+        transitions :from => :hit, :to => :hit
       end
 
       event :miss_block do
-        transitions :from => :none, :to => :miss
+        transitions :from => :in_play, :to => :miss
+        transitions :from => :miss, :to => :miss
       end
 
-    end
+  end
+
 end
