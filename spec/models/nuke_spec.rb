@@ -44,13 +44,13 @@ describe Nuke do
   context "(Functionality)" do
     it "should update server_nuke to miss" do
       @server_nuke = Factory.create(:nuke, :game_id => @game.id, :x => 1, :y => 1, :server_nuke_boolean => true )
-      @server_nuke.set_nuke
+
       @server_nuke.reload.status.should == "miss"
     end
 
     it "should update server_nuke to hit" do
       @server_nuke2 = Factory.create(:nuke, :game_id => @game.id, :x => 0, :y => 0, :server_nuke_boolean => true )
-      @server_nuke2.set_nuke
+
       @server_nuke2.reload.status.should == "hit"
     end
   end

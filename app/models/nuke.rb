@@ -10,6 +10,7 @@ class Nuke < ActiveRecord::Base
   after_create :check_blocks
 
   def check_blocks
+
     self.json_data = ({"id"=>Integer(self.game.server_game_id), "x"=>Integer(self.x), "y"=> Integer(self.y)}).to_json
     if self.server_nuke_boolean?
       if block = Block.where(:x => self.x, :y => self.y, :server_board => false).last
@@ -19,12 +20,17 @@ class Nuke < ActiveRecord::Base
 
 
           if block.state == "in_play"
-
+            game_ship = block.game_ship
+            game_ship.hit_count += 1
+            game_ship.check_if_ship_is_sunk
             game = self.game
             game.server_hits += 1
             game.save
+
           end
           block.hit_block!
+
+
           self.update_attributes(:status => "hit")
         else
 
