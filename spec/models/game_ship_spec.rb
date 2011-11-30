@@ -28,6 +28,23 @@ describe GameShip do
 
 
     end
+
+    it "should update block to have a game_ship_id" do
+      ship = Factory(:ship, :max_per_game => 1)
+      game = Factory.create(:game)
+      block = game.blocks.where(:server_board => false, :x => 0, :y => 0).last
+      game_ship = Factory.create(:game_ship, :ship_id => ship.id, :game_id => game.id)
+      block.game_ship_id.should == game_ship.id
+    end
+
+    it "should update game_ship to sunk if hit count == length" do
+      ship = Factory(:ship, :max_per_game => 1, :length => 1)
+      game = Factory.create(:game)
+      game_ship = Factory.create(:game_ship, :ship_id => ship.id, :game_id => game.id)
+      nuke = Factory.create(:nuke, :game_id => game.id, :x => 0, :y => 0, :server_nuke_boolean => true)
+      game_ship.reload.hit_count.should == 1
+      game_ship.reload.sunk.should == true
+    end
   end
 
   context "(Assiocations)" do
