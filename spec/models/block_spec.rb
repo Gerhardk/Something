@@ -43,13 +43,13 @@ describe Block do
     end
 
     it "should change blocks state to hit" do
-      p @block1.game_ship_id
+
       @nuke = Factory.create(:nuke, :game_id => @game.id, :x => 0, :y => 0, :server_nuke_boolean => true)
       @block1.reload.state.should == "hit"
     end
 
     it "should change blocks state to miss" do
-      p @block2.game_ship_id
+
       @nuke = Factory.create(:nuke, :game_id => @game.id, :x => 9, :y => 9, :server_nuke_boolean => true)
       @block2.reload.state.should == "miss"
     end

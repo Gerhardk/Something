@@ -18,14 +18,13 @@ class Nuke < ActiveRecord::Base
         if block.game_ship
 
 
-
           if block.state == "in_play"
             game_ship = block.game_ship
             game_ship.hit_count += 1
             game_ship.check_if_ship_is_sunk
             game = self.game
             game.server_hits += 1
-            game.save
+            game.check_winner_of_game
 
           end
           block.hit_block!
@@ -41,7 +40,12 @@ class Nuke < ActiveRecord::Base
     else
       if block = Block.where(:x => self.x, :y => self.y, :server_board => true).last
         if self.status == "hit"
+          if block.state == "in_play"
+            game = self.game
+            game.client_hits += 1
+            game.check_winner_of_game
 
+          end
           block.hit_block!
         else
 
@@ -51,7 +55,6 @@ class Nuke < ActiveRecord::Base
       end
     end
   end
-
 
 
   after_find do |nuke|

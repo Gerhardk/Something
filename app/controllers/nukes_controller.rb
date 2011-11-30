@@ -20,10 +20,7 @@ class NukesController < InheritedResources::Base
       p data
 
       @nuke.update_attributes(:status => data["status"])
-      if data["status"] == "hit"
-        @game.client_hits += 1
-        @game.save
-      end
+
       @server_nuke = Nuke.create(:game_id => @game.id, :server_nuke_boolean => true, :x =>Integer(data["x"]), :y => Integer(data["y"]))
 
       render :battle

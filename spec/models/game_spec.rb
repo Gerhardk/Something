@@ -37,13 +37,33 @@ describe Game do
   end
 
   context "(Functionality)" do
-    game = Factory.create(:game)
-    ### total blocks
-    game.blocks.count.should == 200
-    ### server blocks
-    game.blocks.where(:server_board => true).count.should == 100
-    ### player blocks
-    game.blocks.where(:server_board => false).count.should == 100
+    it "should create correct about of blocks" do
+      game = Factory.create(:game)
+          ### total blocks
+          game.blocks.count.should == 200
+          ### server blocks
+          game.blocks.where(:server_board => true).count.should == 100
+          ### player blocks
+          game.blocks.where(:server_board => false).count.should == 100
+    end
+
+    it "should update server_hits" do
+      game = Factory.create(:game)
+      game_ship = Factory.create(:game_ship, :game_id => game.id)
+      nuke = Factory.create(:nuke, :game_id => game.id, :x => 0, :y => 0, :server_nuke_boolean => true)
+      game.server_hits.should == 1
+    end
+
+    it "should update client_hits" do
+      game = Factory.create(:game)
+      game_ship = Factory.create(:game_ship, :game_id => game.id)
+      nuke = Factory.create(:nuke, :game_id => game.id, :x => 0, :y => 0, :status => "hit")
+
+      game.client_hits.should == 1
+    end
+
   end
+
+
 
 end
