@@ -17,9 +17,9 @@
     %tr.line_one
       %td.white
         ="#{i}"
-      -Block.where(:game_id => @game.id, :server_board => false, :x => i).each do |block|
+      -Block.where(:game_id => @game.id, :server_board => false, :y => i).each do |block|
 
-        %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => "#{block.x}", :data_y => "#{block.y}"}
+        %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => block.x, :data_y => block.y}
           = "#{block.x}:#{block.y}"
 
 
@@ -47,7 +47,7 @@
 
               -(ship.max_per_game - total_ships_game).times do |i|
                 %td
-                  .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{ship.length * 30}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
+                  .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{(ship.length * 15) + 30}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
                     &nbsp;
   #ships_vertical
     %h4
@@ -64,7 +64,7 @@
 
               -(ship.max_per_game - total_ships_game).times do |i|
                 %span
-                  .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{ship.length * 30}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id }
+                  .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{(ship.length * 30)}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id }
                     &nbsp;
                   %br
 :javascript

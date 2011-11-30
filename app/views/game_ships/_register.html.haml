@@ -1,15 +1,13 @@
--if @game.errors.any?
+-if game.errors.any?
   #error_explanation
-    %strong= "#{pluralize(@game.errors.count, "error")} prohibited this game from being saved:"
+    %strong= "#{pluralize(game.errors.count, "error")} prohibited this game from being saved:"
     %ol
-      - @game.errors.full_messages.each do |msg|
+      - game.errors.full_messages.each do |msg|
         %li= msg
 
 
 %h3= "Game Board"
 %table.player_board
-
-
   %tr.align_center
     %td.white
     -10.times do |g|
@@ -19,9 +17,15 @@
     %tr.line_one
       %td.white
         ="#{i}"
-      -10.times do |k|
-        %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
-          ="#{k}:#{i}"
+      -Block.where(:game_id => game.id, :server_board => false, :y => i).each do |block|
+
+        %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => block.x, :data_y => block.y}
+          = "#{block.x}:#{block.y}"
+
+
+      -#-10.times do |k|
+      -#  %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
+      -#    ="#{k}:#{i}"
 #ships_for_game
   %h3 Ship Details
 
@@ -36,14 +40,14 @@
 
         -Ship.all.each do |ship|
           %tr
-            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
+            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => game.id).count
             -if total_ships_game < ship.max_per_game
               %td
                 =ship.name
 
               -(ship.max_per_game - total_ships_game).times do |i|
                 %td
-                  .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{ship.length * 30}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
+                  .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{(ship.length * 30) + 30}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => game.id}
                     &nbsp;
   #ships_vertical
     %h4
@@ -53,14 +57,14 @@
 
         -Ship.all.each do |ship|
           %td
-            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
+            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => game.id).count
             -if total_ships_game < ship.max_per_game
               %span
                 =ship.name
 
               -(ship.max_per_game - total_ships_game).times do |i|
                 %span
-                  .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{ship.length * 30}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id }
+                  .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{(ship.length * 30)}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => game.id }
                     &nbsp;
                   %br
 :javascript
@@ -86,7 +90,7 @@
       Edit
     %th
       Remove
-  -GameShip.where(:game_id => @game.id).order(:x).each do |game_ship|
+  -GameShip.where(:game_id => game.id).order(:x).each do |game_ship|
     %tr
       %td
         =game_ship.ship.name
@@ -104,37 +108,37 @@
 
 
 #json_string{:style => "display:none"}
-  =@game.json_string
-%span=link_to "Register Game on Server", register_game_path(@game)
+  =game.json_string
+%span=link_to "Register Game on Server", register_game_path(game)
 
 
 
 #javascript_data{:style => "display:none"}
   #game_ship_ids
     -game_ship_ids = []
-    -GameShip.where(:game_id =>@game.id ).each do |game_ship|
+    -GameShip.where(:game_id =>game.id ).each do |game_ship|
       - game_ship_ids << game_ship.id
     =game_ship_ids.join(",")
 
   #game_ship_x
     -game_ship_x = []
-    -GameShip.where(:game_id =>@game.id ).each do |game_ship|
+    -GameShip.where(:game_id =>game.id ).each do |game_ship|
       - game_ship_x << game_ship.x
     =game_ship_x.join(",")
   #game_ship_y
     -game_ship_y = []
-    -GameShip.where(:game_id =>@game.id ).each do |game_ship|
+    -GameShip.where(:game_id =>game.id ).each do |game_ship|
       - game_ship_y << game_ship.y
     =game_ship_y.join(",")
 
   #game_ship_length
     -game_ship_length = []
-    -GameShip.where(:game_id =>@game.id ).each do |game_ship|
+    -GameShip.where(:game_id =>game.id ).each do |game_ship|
       - game_ship_length << game_ship.ship.length
     =game_ship_length.join(",")
   #game_ship_orientation
     -game_ship_orientation = []
-    -GameShip.where(:game_id =>@game.id ).each do |game_ship|
+    -GameShip.where(:game_id =>game.id ).each do |game_ship|
       - game_ship_orientation << game_ship.orientation
     =game_ship_orientation.join(",")
 
