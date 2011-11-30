@@ -1,7 +1,7 @@
 class GameShip < ActiveRecord::Base
   belongs_to :ship
   belongs_to :game
-
+  has_many :blocks, :dependent => :destroy
   before_create :check_for_max_ships
 
   validates :game_id, :presence => true

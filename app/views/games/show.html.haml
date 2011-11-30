@@ -8,8 +8,6 @@
 
 %h3= "Game Board"
 %table.player_board
-
-
   %tr.align_center
     %td.white
     -10.times do |g|
@@ -19,9 +17,15 @@
     %tr.line_one
       %td.white
         ="#{i}"
-      -10.times do |k|
-        %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
-          ="#{k}:#{i}"
+      -Block.where(:game_id => @game.id, :server_board => false, :x => i).each do |block|
+
+        %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => "#{block.x}", :data_y => "#{block.y}"}
+          = "#{block.x}:#{block.y}"
+
+
+      -#-10.times do |k|
+      -#  %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
+      -#    ="#{k}:#{i}"
 #ships_for_game
   %h3 Ship Details
 
