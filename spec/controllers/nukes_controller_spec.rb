@@ -30,7 +30,7 @@ describe NukesController do
 
   describe "GET index" do
     it "assigns all nukes as @nukes" do
-      nuke = Nuke.create! valid_attributes
+      nuke = Factory.create(:nuke)
       get :index
       assigns(:nukes).should eq([nuke])
     end
@@ -38,7 +38,7 @@ describe NukesController do
 
   describe "GET show" do
     it "assigns the requested nuke as @nuke" do
-      nuke = Nuke.create! valid_attributes
+      nuke = Factory.create(:nuke)
       get :show, :id => nuke.id
       assigns(:nuke).should eq(nuke)
     end
@@ -53,53 +53,18 @@ describe NukesController do
 
   describe "GET edit" do
     it "assigns the requested nuke as @nuke" do
-      nuke = Nuke.create! valid_attributes
+      nuke = Factory.create(:nuke)
       get :edit, :id => nuke.id
       assigns(:nuke).should eq(nuke)
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Nuke" do
-        expect {
-          post :create, :nuke => valid_attributes
-        }.to change(Nuke, :count).by(1)
-      end
 
-      it "assigns a newly created nuke as @nuke" do
-        post :create, :nuke => valid_attributes
-        assigns(:nuke).should be_a(Nuke)
-        assigns(:nuke).should be_persisted
-      end
-
-      it "redirects to the created nuke" do
-        post :create, :nuke => valid_attributes
-        response.should redirect_to(battle_game_path(Nuke.last.game))
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved nuke as @nuke" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Nuke.any_instance.stub(:save).and_return(false)
-        post :create, :nuke => {}
-        assigns(:nuke).should be_a_new(Nuke)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Nuke.any_instance.stub(:save).and_return(false)
-        xhr :post, :create, :nuke => {}
-        response.should render_template("errors.js")
-      end
-    end
-  end
 
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested nuke" do
-        nuke = Nuke.create! valid_attributes
+        nuke = Factory.create(:nuke)
         # Assuming there are no other nukes in the database, this
         # specifies that the Nuke created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -109,47 +74,31 @@ describe NukesController do
       end
 
       it "assigns the requested nuke as @nuke" do
-        nuke = Nuke.create! valid_attributes
+        nuke = Factory.create(:nuke)
         put :update, :id => nuke.id, :nuke => valid_attributes
         assigns(:nuke).should eq(nuke)
       end
 
       it "redirects to the nuke" do
-        nuke = Nuke.create! valid_attributes
+        nuke = Factory.create(:nuke)
         put :update, :id => nuke.id, :nuke => valid_attributes
         response.should redirect_to(nuke)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the nuke as @nuke" do
-        nuke = Nuke.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Nuke.any_instance.stub(:save).and_return(false)
-        put :update, :id => nuke.id, :nuke => {}
-        assigns(:nuke).should eq(nuke)
-      end
 
-      it "re-renders the 'edit' template" do
-        nuke = Nuke.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Nuke.any_instance.stub(:save).and_return(false)
-        put :update, :id => nuke.id, :nuke => {}
-
-      end
-    end
   end
 
   describe "DELETE destroy" do
     it "destroys the requested nuke" do
-      nuke = Nuke.create! valid_attributes
+      nuke = Factory.create(:nuke)
       expect {
         delete :destroy, :id => nuke.id
       }.to change(Nuke, :count).by(-1)
     end
 
     it "redirects to the nukes list" do
-      nuke = Nuke.create! valid_attributes
+      nuke = Factory.create(:nuke)
       delete :destroy, :id => nuke.id
       response.should redirect_to(nukes_url)
     end
