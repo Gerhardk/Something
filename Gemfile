@@ -10,9 +10,10 @@ gem 'rails', '3.1.1'
 #end
 
 #platforms :ruby do
-  gem 'activerecord-sqlserver-adapter'
-  gem 'ruby-odbc'
+#  gem 'activerecord-sqlserver-adapter'
+#  gem 'ruby-odbc'
 #end
+gem "pg", "~> 0.11.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
