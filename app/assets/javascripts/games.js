@@ -92,8 +92,7 @@ function nuke_server(){
   $(".attack_area").bind("click", function(){
     var x = $(this).attr("data_x");
     var y = $(this).attr("data_y");
-    alert(x);
-    alert(y);
+   
     var game_id = $(this).attr("data_game_id")
     var server_nuke = false
     var data_for_nuke = {
