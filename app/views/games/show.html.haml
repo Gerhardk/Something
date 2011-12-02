@@ -7,73 +7,84 @@
 
 
 %h3= "Game Board"
-%table.player_board
-  %tr.align_center
-    %td.white
-    -10.times do |g|
-      %td.white
-        ="#{g}"
-  -10.times do |i|
-    %tr.line_one
-      %td.white
-        ="#{i}"
-      -Block.where(:game_id => @game.id, :server_board => false, :y => i).each do |block|
+%table
+  %tr
+    %td
+      %table.player_board
+        %tr.align_center
+          %td.white
+          -10.times do |g|
+            %td.white
+              ="#{g}"
+        -10.times do |i|
+          %tr.line_one
+            %td.white
+              ="#{i}"
+            -Block.where(:game_id => @game.id, :server_board => false, :y => i).order(:x).each do |block|
 
-        %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => block.x, :data_y => block.y}
-          = "#{block.x}:#{block.y}"
-
-
-      -#-10.times do |k|
-      -#  %td.player_placement{:id => "player_board_#{k}_#{i}", :data_x => "#{k}", :data_y => "#{i}"}
-      -#    ="#{k}:#{i}"
-#ships_for_game
-  %h3 Ship Details
-
-  #ships_horizontal
-    %h4
-      ="Orientation : Horizontal"
-    %table
-      %tr
+              %td.player_placement{:id => "player_board_#{block.x}_#{block.y}", :data_x => block.x, :data_y => block.y}
+                = "#{block.x}:#{block.y}"
 
 
-        %td
-
-        -Ship.all.each do |ship|
+    %td      
+      #ships_for_game
+        %h3 Ship Details
+        %table
           %tr
-            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
-            -if total_ships_game < ship.max_per_game
-              %td
-                =ship.name
+            %td
 
-              -(ship.max_per_game - total_ships_game).times do |i|
-                %td
-                  .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{(ship.length * 15) + 30}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
-                    &nbsp;
-  #ships_vertical
-    %h4
-      ="Orientation : Vertical"
-    %table
-      %tr
+              #ships_horizontal
+                %h4
+                  ="Orientation : Horizontal"
+                %table
+                  %tr
 
-        -Ship.all.each do |ship|
-          %td
-            -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
-            -if total_ships_game < ship.max_per_game
-              %span
-                =ship.name
 
-              -(ship.max_per_game - total_ships_game).times do |i|
-                %span
-                  .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{(ship.length * 30)}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id }
-                    &nbsp;
-                  %br
-:javascript
-  $(function() {
-    ShipsDraggables();
-    ShipsDroppables();
-    draw_ships_for_game();
-  });
-%br
+                    %td
+
+                    -Ship.all.each do |ship|
+                      %tr
+                        -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
+                        -if total_ships_game < ship.max_per_game
+                          %td
+                            =ship.name
+
+                          -(ship.max_per_game - total_ships_game).times do |i|
+                            %td
+                              -if ship.length > 2
+                                .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{(ship.length * 30) + 15}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
+                                  &nbsp;
+                              -else
+                                .ships_horizontal{:id => "ship_#{ship.id}",:style => "width: #{(ship.length * 30)}px;", :ship_id =>ship.id, :orientation => "horizontal", :data_length => ship.length, :game_id => @game.id}
+                                  &nbsp;
+            %td
+
+              #ships_vertical
+                %h4
+                  ="Orientation : Vertical"
+                %table
+                  %tr
+
+                    -Ship.all.each do |ship|
+                      %td
+                        -total_ships_game = GameShip.where(:ship_id => ship.id, :game_id => @game.id).count
+                        -if total_ships_game < ship.max_per_game
+                          %span
+                            =ship.name
+
+                          -(ship.max_per_game - total_ships_game).times do |i|
+                            %span
+                              .ships_vertical{:id => "ship_#{ship.id}",:style => "height: #{(ship.length * 30)}px;", :ship_id =>ship.id, :orientation => "vertical", :data_length => ship.length, :game_id => @game.id }
+                                &nbsp;
+                              %br
+      :javascript
+        $(function() {
+          ShipsDraggables();
+          ShipsDroppables();
+          draw_ships_for_game();
+        });
+      %br
+%span=link_to "Register Game on Server", register_game_path(@game)        
 %h3
   Ships In Play
 %table.game_ships{:border => 0, :cellpadding => 0, :cellspacing => 0}
@@ -109,7 +120,7 @@
 
 #json_string{:style => "display:none"}
   =@game.json_string
-%span=link_to "Register Game on Server", register_game_path(@game)
+
 
 
 

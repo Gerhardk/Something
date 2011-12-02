@@ -2,24 +2,25 @@
 %p
   = link_to 'New Ship', new_ship_path
   |
-  = link_to "Back", :back      
-%table.dataTable{:style => "text-align: center"}
-  %tr
-    %th Name
-    %th Length
-    %th Max Per Game
-    %th
-    %th
-
-
-  - @ships.each do |ship|
+  = link_to "Back", :back
+-if !@ships.empty?
+  %table.dataTable{:style => "text-align: center"}
     %tr
-      %td= ship.name
-      %td= ship.length
-      %td= ship.max_per_game
+      %th Name
+      %th Length
+      %th Max Per Game
+      %th
+      %th
 
-      %td= link_to 'Edit', edit_ship_path(ship)
-      %td= link_to 'Destroy', ship, :confirm => 'Are you sure?', :method => :delete
+  
+    - @ships.each do |ship|
+      %tr
+        %td= ship.name
+        %td= ship.length
+        %td= ship.max_per_game
+
+        %td= link_to 'Edit', edit_ship_path(ship)
+        %td= link_to 'Destroy', ship, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
