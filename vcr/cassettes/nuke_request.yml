@@ -1,0 +1,26 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :post
+    uri: http://battle.platform45.com:80/nuke
+    body: "{\"id\":622,\"x\":0,\"y\":0}"
+    headers: 
+      content-type: 
+      - application/json
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - nginx/0.7.67
+      date: 
+      - Fri, 02 Dec 2011 12:44:40 GMT
+      content-type: 
+      - application/json
+      connection: 
+      - keep-alive
+      content-length: 
+      - "29"
+    body: "{\"status\":\"miss\",\"x\":7,\"y\":7}"
+    http_version: "1.1"
