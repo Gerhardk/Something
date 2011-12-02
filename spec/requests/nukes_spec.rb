@@ -2,10 +2,19 @@ require 'spec_helper'
 
 describe "Nukes" do
   describe "GET /nukes" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get nukes_path
-      response.status.should be(200)
+   
+    describe "GET /nuke" do
+
+        it "fetches the content form request" do
+          game = Factory(:game)
+          FakeWeb.register_uri(:post, "http://example.com/", :body =>({"game_id"=>"#{game.id}", "x"=>"9", "y"=>"4"}).to_json)
+          nuke = Factory.create(:nuke)
+          # Trigger the behavior that occurs when invalid params are submitted
+         
+          response = nuke.send_nuke_to_server("http://example.com/")
+          response.should_not be_empty
+        end
     end
+
   end
 end

@@ -154,4 +154,30 @@ describe GamesController do
     end
   end
 
+
+  describe "Battle" do
+    it "assigns the game as @game" do
+        game = Game.create! valid_attributes
+        # Trigger the behavior that occurs when invalid params are submitted
+        Game.any_instance.stub(:save).and_return(false)
+        get :battle, :id => game.id
+        assigns(:game).should eq(game)
+    end
+  end
+
+  describe "Register" do
+    it "should respond with json data" do
+      game = Game.create! valid_attributes
+      # Trigger the behavior that occurs when invalid params are submitted
+      Game.any_instance.stub(:save).and_return(false)
+      VCR.use_cassette('game_request', :record => :new_episodes) do
+        get :register, :id => game.id
+
+      end
+      assigns(:game).should eq(game)
+      response.should redirect_to(battle_game_path(game))
+    end
+  end
+
+
 end

@@ -10,12 +10,24 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'vcr'
+FakeWeb.allow_net_connect = false
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  config.before(:each) do
+    FakeWeb.clean_registry
+  end
+  config.extend VCR::RSpec::Macros
+
+
+  VCR.config do |c|
+    c.cassette_library_dir = 'vcr/cassettes'
+    c.stub_with :fakeweb
+  end
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

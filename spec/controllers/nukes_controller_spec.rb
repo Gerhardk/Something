@@ -24,8 +24,8 @@ describe NukesController do
   # Nuke. As you add validations to Nuke, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    game = Factory(:game)
-    {"game_id"=>"#{game.id}", "x"=>"9", "y"=>"4"}
+    @game = Factory(:game)
+    {"game_id"=>"#{@game.id}", "x"=>"9", "y"=>"4"}
   end
 
   describe "GET index" do
@@ -101,6 +101,32 @@ describe NukesController do
       nuke = Factory.create(:nuke)
       delete :destroy, :id => nuke.id
       response.should redirect_to(nukes_url)
+    end
+  end
+
+
+  describe "Create" do
+    it "should create a nuke " do
+      @game = Factory(:game, :server_game_id => 622)
+      # Trigger the behavior that occurs when invalid params are submitted
+
+      VCR.use_cassette('nuke_request', :record => :new_episodes) do
+
+        xhr :get, :create, :nuke => {"game_id"=>"#{@game.id}", "x"=>"0", "y"=>"0", "server_nuke_boolean"=>"false"}
+
+      end
+      response.should render_template(:battle)
+      
+    end
+
+    it "should render errors.js if invalid nuke" do
+      VCR.use_cassette('nuke_request', :record => :new_episodes) do
+
+        xhr :get, :create, :nuke => {"game_id"=>"#{nil}", "x"=>"0", "y"=>"0", "server_nuke_boolean"=>"false"}
+
+      end
+      response.should render_template("nukes/errors.js")
+
     end
   end
 
