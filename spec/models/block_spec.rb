@@ -45,7 +45,7 @@ describe Block do
     end
 
     it "should change blocks state to hit" do
-
+      
       @nuke = Factory.create(:nuke, :game_id => @game.id, :x => 0, :y => 0, :server_nuke_boolean => true)
       @block1.reload.state.should == "hit"
     end

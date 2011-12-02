@@ -50,6 +50,14 @@ describe GameShip do
       game_ship.reload.hit_count.should == 1
       game_ship.reload.sunk.should == true
     end
+
+    it "should do same for vertical game_ship" do
+      ship = Factory(:ship, :max_per_game => 1)
+      game = Factory.create(:game)
+      block = game.blocks.where(:server_board => false, :x => 0, :y => 0).last
+      game_ship = Factory.create(:game_ship, :ship_id => ship.id, :game_id => game.id, :orientation => "vertical")
+      block.game_ship_id.should == game_ship.id
+    end
   end
 
   context "(Assiocations)" do
