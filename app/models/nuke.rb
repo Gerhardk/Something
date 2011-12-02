@@ -19,7 +19,8 @@ class Nuke < ActiveRecord::Base
 
 
           if block.state == "in_play"
-            game_ship = block.game_ship
+            game_ship = GameShip.find(block.game_ship_id)
+            
             game_ship.hit_count += 1
             game_ship.check_if_ship_is_sunk
             game = self.game
