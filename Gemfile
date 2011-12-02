@@ -41,7 +41,7 @@ gem "formtastic", "~> 1.2.4"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-
+gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
 group :development,:test do
   # Pretty printed test output
   gem 'turn', :require => false
@@ -52,6 +52,7 @@ group :development,:test do
   gem 'representative'
   gem "guard-rspec"
   #gem 'guard-livereload'
-#
-#
+  gem "fakeweb"
+  gem "vcr"
+
 end
