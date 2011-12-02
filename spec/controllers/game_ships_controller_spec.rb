@@ -116,23 +116,23 @@ describe GameShipsController do
       end
     end
 
-    #describe "with invalid params" do
-    #  it "assigns the game_ship as @game_ship" do
-    #    game_ship = GameShip.create! valid_attributes
-    #    # Trigger the behavior that occurs when invalid params are submitted
-    #    GameShip.any_instance.stub(:save).and_return(false)
-    #    put :update, :id => game_ship.id, :game_ship => {}
-    #    assigns(:game_ship).should eq(game_ship)
-    #  end
-    #
-    #  it "re-renders the 'edit' template" do
-    #    game_ship = GameShip.create! valid_attributes
-    #    # Trigger the behavior that occurs when invalid params are submitted
-    #    GameShip.any_instance.stub(:save).and_return(false)
-    #    put :update, :id => game_ship.id, :game_ship => {}
-    #    response.should render_template("edit")
-    #  end
-    #end
+    describe "with invalid params" do
+      it "assigns the game_ship as @game_ship" do
+        game_ship = GameShip.create! valid_attributes
+        # Trigger the behavior that occurs when invalid params are submitted
+        GameShip.any_instance.stub(:save).and_return(false)
+        xhr :put, :update, :id => game_ship.id, :game_ship => {}
+        assigns(:game_ship).should eq(game_ship)
+      end
+
+      it "re-renders the 'edit' template" do
+        game_ship = GameShip.create! valid_attributes
+        # Trigger the behavior that occurs when invalid params are submitted
+        GameShip.any_instance.stub(:save).and_return(false)
+        xhr :put, :update, :id => game_ship.id, :game_ship => {}
+        response.should render_template("edit")
+      end
+    end
   end
 
   describe "DELETE destroy" do
@@ -148,6 +148,8 @@ describe GameShipsController do
       xhr :delete, :destroy,{:id => game_ship.id }
       response.should render_template(:register)
     end
+
+   
   end
 
 end

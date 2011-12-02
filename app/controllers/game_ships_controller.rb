@@ -17,8 +17,7 @@ class GameShipsController < InheritedResources::Base
 
     if @game_ship.destroy
       render :register
-    else
-      render :template => "game_ships/errors.js.erb"
+ 
     end
 
   end
@@ -37,7 +36,7 @@ class GameShipsController < InheritedResources::Base
     if @game_ship.update_attributes(params[:game_ship])
       render :register
     else
-      edit
+      render :edit
     end
   end
 
