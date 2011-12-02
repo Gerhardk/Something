@@ -21,10 +21,15 @@ class NukesController < InheritedResources::Base
         @server_ship = ServerShip.create(:name => data["sunk"], :sunk => true, :game_id => @game.id)
       end
 
-      if data["prize"]
-        @game.win_game!
-        if @game.status == "won"
-          render :won_game
+      if data["game_status"]
+        if data["game_status"] == "lost"
+          @game.win_game!
+
+            render :won_game
+
+        else
+          @game.lose_game
+          render :lost_game 
         end
       end
       render :battle
