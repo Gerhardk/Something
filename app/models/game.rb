@@ -66,4 +66,15 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def send_request_to_server(url)
+    uri = URI.parse(url)
+
+    request = Net::HTTP::Post.new(uri.request_uri,  initheader = {'Content-Type' =>'application/json'})
+    request.body = self.json_string
+    response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }
+    return ActiveSupport::JSON.decode(response.body)
+  end
+
+  
+
 end

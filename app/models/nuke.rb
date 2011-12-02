@@ -62,4 +62,15 @@ class Nuke < ActiveRecord::Base
 
     nuke.json_data = ({"id"=>Integer(game.server_game_id), "x"=>Integer(nuke.x), "y"=> Integer(nuke.y)}).to_json
   end
+
+  def send_nuke_to_server(url)
+    p self.json_data
+    uri = URI.parse(url)
+
+      request = Net::HTTP::Post.new(uri.request_uri,  initheader = {'Content-Type' =>'application/json'})
+      request.body = self.json_data
+      response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }
+
+      return data = ActiveSupport::JSON.decode(response.body)
+  end
 end

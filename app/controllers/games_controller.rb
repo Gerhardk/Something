@@ -17,12 +17,11 @@ class GamesController < InheritedResources::Base
     @game = Game.find(params[:id])
     @json_string = @game.json_string
 
-    uri = URI.parse("http://battle.platform45.com/register")
 
-    request = Net::HTTP::Post.new(uri.request_uri,  initheader = {'Content-Type' =>'application/json'})
-    request.body = @json_string
-    response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }
-    server_game_id = ActiveSupport::JSON.decode(response.body)
+    response = @game.send_request_to_server("http://battle.platform45.com/register")
+   
+    server_game_id = response
+
     if server_game_id.has_key? "id"
       @game.update_attributes(:server_game_id =>Integer(server_game_id["id"]))
       redirect_to battle_game_path(@game)
