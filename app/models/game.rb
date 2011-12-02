@@ -32,6 +32,7 @@ class Game < ActiveRecord::Base
 
   end
 
+ 
 
 
   def create_blocks_for_game

@@ -75,7 +75,7 @@ describe Game do
       nuke = Factory.create(:nuke, :game_id => game.id, :x => 0, :y => 0, :status => "hit")
       game.client_hits.should == 1
 
-      game.status.should == "won"
+
 
     end
 
@@ -86,7 +86,8 @@ describe Game do
       game_ship = Factory.create(:game_ship, :game_id => game.id, :ship_id => ship.id)
       nuke = Factory.create(:nuke, :game_id => game.id, :x => 0, :y => 0, :server_nuke_boolean => true)
       game.server_hits.should == 1
-      game.status.should == "lost"
+
+
 
     end
 
