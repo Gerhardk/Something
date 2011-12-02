@@ -45,17 +45,23 @@
       %tr
         %td
           -GameShip.where(:game_id => @game.id).order(:ship_id).each do |game_ship|
+            -color = "#6d6969"
+            -if game_ship.sunk
+              -color = "red"
             -if game_ship.orientation == "vertical"
               =game_ship.ship.name
               %span
-                .game_ships_vertical{:id => "game_ship_#{game_ship.id}",:style => "height: #{game_ship.ship.length * 30}px;", :game_id => @game.id, :orientation => "vertical"}
+                .game_ships_vertical{:style => "background-color: #{color}", :id => "game_ship_#{game_ship.id}",:style => "height: #{game_ship.ship.length * 30}px;", :game_id => @game.id, :orientation => "vertical"}
                   &nbsp;
         %td
           -GameShip.where(:game_id => @game.id).order(:ship_id).each do |game_ship|
+            -color = "#6d6969"
+            -if game_ship.sunk
+              -color = "red"
             -if game_ship.orientation == "horizontal"
               =game_ship.ship.name
               %span
-                .game_ships_horizontal{:id => "game_ship_#{game_ship.id}",:style => "width: #{game_ship.ship.length * 30}px;", :game_id => @game.id, :orientation => "horizontal"}
+                .game_ships_horizontal{:style => "background-color: #{color}",:id => "game_ship_#{game_ship.id}",:style => "width: #{game_ship.ship.length * 30}px;", :game_id => @game.id, :orientation => "horizontal"}
                   &nbsp;
 
 #nuke_data{:style => "display:none"}
