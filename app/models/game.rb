@@ -8,13 +8,10 @@ class Game < ActiveRecord::Base
 
   attr_accessor :json_string
   after_find do |game|
-
     game.json_string = ({"name"=>game.name, "email"=>game.email}).to_json
-
   end
 
   after_create :create_blocks_for_game
-
 
   include Stateflow
   stateflow do
@@ -29,21 +26,15 @@ class Game < ActiveRecord::Base
     event :lose_game do
       transitions :from => :in_progress, :to => :lost
     end
-
   end
-
- 
-
 
   def create_blocks_for_game
     ## create player_board
-
     10.times do |x|
       10.times do |y|
         Block.create(:game_id => self.id, :x => x, :y => y, :server_board => false)
       end
     end
-
     10.times do |x|
       10.times do |y|
         Block.create(:game_id => self.id, :x => x, :y => y, :server_board => true)
@@ -53,13 +44,9 @@ class Game < ActiveRecord::Base
 
   def send_request_to_server(url)
     uri = URI.parse(url)
-
     request = Net::HTTP::Post.new(uri.request_uri,  initheader = {'Content-Type' =>'application/json'})
     request.body = self.json_string
     response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }
     return ActiveSupport::JSON.decode(response.body)
   end
-
-  
-
 end
