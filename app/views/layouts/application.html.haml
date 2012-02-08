@@ -1,44 +1,27 @@
 !!!
 %html
-
   %head
-
-
     %title Battleships
     = stylesheet_link_tag 'application'
     = javascript_include_tag  "application"
     = csrf_meta_tag
-
-
-
-
   %body
-
-
     #access_keys
       .acc_content
         = render :partial=>"/layouts/navigation_links"
         %h1 Battleships
-
     #work-area
       %table#main-panel{:class=>"work-panel", :width=>"100%", :border=>"0", :cellpadding=>"2", :cellspacing=>"0"}
         %tr
-
           %td.top
-
         %tr
-
           %td{:class=>"panel-content"}
             %span.notice#flash_notice= notice
             %span.notice#flash_alert= alert
             .content#content
               = yield
-
         %tr
-
           %td{:class=>"bottom"}
-
-
     = render :partial=>"/layouts/lightbox_small"
 
 
