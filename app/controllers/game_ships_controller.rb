@@ -2,9 +2,7 @@ class GameShipsController < InheritedResources::Base
   respond_to :js, :html, :xml
   def create
     @game = Game.find(params[:game_ship][:game_id])
-
-    @game_ship = GameShip.create(params[:game_ship])
-    if @game_ship.id != nil
+    unless @game_ship = GameShip.create(params[:game_ship])
       render :register
     else
       render :template => "game_ships/errors.js.erb"
@@ -17,16 +15,12 @@ class GameShipsController < InheritedResources::Base
 
     if @game_ship.destroy
       render :register
- 
-    end
-
+     end
   end
 
   def edit
     @game_ship = GameShip.find(params[:id])
     @game = @game_ship.game
-
-
     render :edit
   end
 
@@ -39,5 +33,4 @@ class GameShipsController < InheritedResources::Base
       render :edit
     end
   end
-
 end
