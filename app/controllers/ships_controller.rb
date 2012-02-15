@@ -1,9 +1,7 @@
 class ShipsController < InheritedResources::Base
-
-
   def create
     @ship = Ship.create(params[:ship])
-    if @ship.id != nil
+    if @ship.id != nil 
       redirect_to ships_path()
     else
       redirect_to new_ship_path()
@@ -18,5 +16,4 @@ class ShipsController < InheritedResources::Base
       redirect_to edit_ship_path(@ship )
     end
   end
-
 end

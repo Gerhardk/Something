@@ -1,8 +1,3 @@
-require 'net/http'
-
-require 'rubygems'
-require 'json'
-
 class GamesController < InheritedResources::Base
 
   def show

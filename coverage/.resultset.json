@@ -1,44 +1,47 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/application_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/application_controller.rb": [
         1,
         1,
-        null
-      ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/application_helper.rb": [
         1,
-        null
-      ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/blocks_helper.rb": [
+        1,
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/game_ships_helper.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/games_helper.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/blocks_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/nukes_helper.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/game_ships_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/public_helper.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/games_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/helpers/ships_helper.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/nukes_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/blocks_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/public_helper.rb": [
         1,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/block.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/helpers/ships_helper.rb": [
+        1,
+        null
+      ],
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/blocks_controller.rb": [
+        1,
+        null
+      ],
+      "/home/gerhard/Desktop/projects/Battleships/app/models/block.rb": [
         1,
         1,
         1,
@@ -65,12 +68,11 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/game_ships_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/game_ships_controller.rb": [
         1,
         1,
         1,
         5,
-        null,
         5,
         5,
         3,
@@ -82,19 +84,14 @@
         1,
         2,
         2,
-        null,
         2,
         2,
         null,
         null,
         null,
-        null,
-        null,
         1,
         1,
         1,
-        null,
-        null,
         1,
         null,
         null,
@@ -105,12 +102,11 @@
         2,
         null,
         2,
-        null,
         null,
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/game_ship.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/models/game_ship.rb": [
         1,
         1,
         1,
@@ -222,12 +218,7 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/games_controller.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/games_controller.rb": [
         1,
         null,
         1,
@@ -286,7 +277,7 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/game.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/models/game.rb": [
         1,
         1,
         1,
@@ -297,13 +288,10 @@
         null,
         1,
         1,
-        null,
         23,
         null,
         null,
-        null,
         1,
-        null,
         null,
         1,
         1,
@@ -320,17 +308,11 @@
         null,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
         1,
-        null,
         null,
         62,
         620,
         6200,
-        null,
         null,
         null,
         62,
@@ -342,18 +324,14 @@
         null,
         1,
         2,
-        null,
         2,
         2,
         4,
         2,
         null,
-        null,
-        null,
-        null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/nukes_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/nukes_controller.rb": [
         1,
         null,
         1,
@@ -397,7 +375,7 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/nuke.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/models/nuke.rb": [
         1,
         1,
         1,
@@ -476,7 +454,7 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/public_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/public_controller.rb": [
         1,
         1,
         null,
@@ -484,10 +462,8 @@
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/controllers/ships_controller.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/controllers/ships_controller.rb": [
         1,
-        null,
-        null,
         1,
         5,
         5,
@@ -505,27 +481,26 @@
         3,
         null,
         null,
+        null
+      ],
+      "/home/gerhard/Desktop/projects/Battleships/app/models/ship.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
         null,
         null
       ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/ship.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/home/gerhard/Desktop/shared/Battleships/app/models/server_ship.rb": [
+      "/home/gerhard/Desktop/projects/Battleships/app/models/server_ship.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1322834353
+    "timestamp": 1328799094
   }
 }
