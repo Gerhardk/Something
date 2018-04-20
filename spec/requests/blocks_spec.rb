@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Blocks" do
   describe "GET /blocks" do

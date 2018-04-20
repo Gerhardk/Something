@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "game_ships/index.html.haml" do
   before(:each) do
