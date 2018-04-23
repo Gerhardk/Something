@@ -1,4 +1,4 @@
-class CreateNukes < ActiveRecord::Migration
+class CreateNukes < ActiveRecord::Migration[5.0]
   def change
     create_table :nukes do |t|
       t.string :x
