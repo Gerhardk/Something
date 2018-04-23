@@ -1,2 +1,2 @@
-class BlocksController < InheritedResources::Base
+class BlocksController < ApplicationController
 end 

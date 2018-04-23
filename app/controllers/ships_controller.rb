@@ -1,4 +1,4 @@
-class ShipsController < InheritedResources::Base
+class ShipsController < ApplicationController
   def create
     @ship = Ship.create(params[:ship])
     if @ship.id != nil 

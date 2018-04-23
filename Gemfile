@@ -26,7 +26,6 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'haml'
-gem 'inherited_resources'
 gem 'stateflow'
 gem 'formtastic'
 
@@ -48,6 +47,7 @@ group :development,:test do
   gem 'turn', :require => false
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'fuubar'
   #gem 'nokogiri', "~> 1.5.0"
   gem 'representative'
@@ -55,4 +55,5 @@ group :development,:test do
   #gem 'guard-livereload'
   gem 'fakeweb'
   gem 'vcr'
+  gem 'pry'
 end
