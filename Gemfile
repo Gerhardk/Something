@@ -54,6 +54,5 @@ group :development,:test do
   gem 'guard-rspec'
   #gem 'guard-livereload'
   gem 'fakeweb'
-  gem 'vcr'
   gem 'pry'
 end
