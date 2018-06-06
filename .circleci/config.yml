@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/Something
     docker:
-      - image: circleci/ruby:2.5.1
+      - image: circleci/ruby:2.5.1-browsers
         environment:
           PGHOST: localhost
           PGUSER: Something
