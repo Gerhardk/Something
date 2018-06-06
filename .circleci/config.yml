@@ -10,9 +10,9 @@ jobs:
           RAILS_ENV: test
       - image: postgres:9.5
         environment:
-          POSTGRES_USER: Something
-          POSTGRES_DB: Something_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: gerhardk19
+          POSTGRES_DB: battleships_test
+          POSTGRES_PASSWORD: rails
     steps:
       - checkout
 
