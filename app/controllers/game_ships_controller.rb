@@ -1,5 +1,4 @@
 class GameShipsController < ApplicationController
-  respond_to :js, :html, :xml
   def create
     @game = Game.find(params[:game_ship][:game_id])
     @game_ship = GameShip.create(params[:game_ship])

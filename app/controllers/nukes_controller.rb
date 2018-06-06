@@ -1,5 +1,4 @@
 require 'net/http'
-
 require 'rubygems'
 require 'json'
 class NukesController < ApplicationController
