@@ -70,13 +70,10 @@ describe BlocksController do
     describe "with valid params" do
       it "updates the requested block" do
         block = Block.create! valid_attributes
-        # Assuming there are no other blocks in the database, this
-        # specifies that the Block created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        allow_any_instance_of(Block).to receive(:update_attributes).with(false)
+    
         # Block.any_instance.should_receive(:update_attributes).with({'x' => '1'})
         put :update, params: { id: block.id, block: {'x' => '1'} }
+        expect(block.reload.x).to eq(1)
       end
 
       it "assigns the requested block as @block" do
