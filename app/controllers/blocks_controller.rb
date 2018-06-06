@@ -5,7 +5,7 @@ class BlocksController < ApplicationController
   end
 
   def show
-    @block = Block.find(params[:id])
+    @block = find_block
   end
 
   def new
@@ -13,13 +13,15 @@ class BlocksController < ApplicationController
   end
 
   def edit 
-    @block = Block.find(params[:id])
+    @block = find_block
   end
 
   def update
-    @block = Block.find(params[:id])
-    if @block.update_attributes(block_params)
-      redirect_to @block
+    @block = find_block
+    if @block.update(block_params)
+      redirect_to @block, notice: 'Post was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -27,10 +29,22 @@ class BlocksController < ApplicationController
     @block = Block.new(block_params)
     if @block.save
       redirect_to @block
+    else
+      render :new
     end
   end
 
+  def destroy
+    find_block.destroy
+
+    redirect_to blocks_path
+  end
+
   private
+
+  def find_block
+    @block = Block.find(params[:id])
+  end
 
   def block_params
     begin
