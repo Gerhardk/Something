@@ -5,3 +5,4 @@ jobs:
        - image: circleci/ruby:2.5.1-browsers
      steps:
        - checkout
+       - run: bundle exec rspec
