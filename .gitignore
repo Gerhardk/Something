@@ -9,3 +9,4 @@ log/
 db/schema.rb
 coverage/*
 coverage/**/
+/coverage/
