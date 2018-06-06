@@ -17,7 +17,6 @@ class BlocksController < ApplicationController
   end
 
   def update
-    binding.pry
     @block = Block.find(params[:id])
     if @block.update_attributes(block_params)
       redirect_to @block
