@@ -10,10 +10,10 @@ FactoryBot.define do
     name 'Gerhard Koekemoer'
     server_game_id 1098
     server_hits 0
-    lient_hits 0
+    client_hits 0
   end
 
-  factory :game_ship do
+  factory :game_ship, class: GameShip do
     game
     ship
     hit_count 0

@@ -26,8 +26,8 @@ class BlocksController < ApplicationController
   end
 
   def create
-    @block = Block.new(block_params)
-    if @block.save
+    @block = Block.create(block_params)
+    if @block.valid?
       redirect_to @block
     else
       render :new
@@ -47,9 +47,6 @@ class BlocksController < ApplicationController
   end
 
   def block_params
-    begin
-      params.require(:block).permit(:game_id, :x, :y)
-    rescue ActionController::ParameterMissing => e
-    end
+    params.require(:block).permit(:game_id, :x, :y)
   end
 end 
