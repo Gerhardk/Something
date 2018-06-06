@@ -60,7 +60,7 @@ describe BlocksController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Block).to receive(:save).and_return(false)
         # Block.any_instance.stub(:save).and_return(false)
-        post :create, params: { block: {} }
+        post :create, params: { block: { name: "Hello"} }
         expect(assigns(:block)).to be_a_new(Block)
       end
     end
