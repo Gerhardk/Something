@@ -71,7 +71,7 @@ describe GamesController do
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
-        post :create, :game => {}
+        post :create, params: { :game => invalid_attributes }
         expect(response).to render_template("new")
       end
     end
@@ -81,10 +81,6 @@ describe GamesController do
     describe "with valid params" do
       it "updates the requested game" do
         game = Game.create! valid_attributes
-        # Assuming there are no other games in the database, this
-        # specifies that the Game created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Game.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => game.id, :game => {'these' => 'params'}
       end
