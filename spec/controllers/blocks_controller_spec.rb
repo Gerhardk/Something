@@ -70,8 +70,6 @@ describe BlocksController do
     describe "with valid params" do
       it "updates the requested block" do
         block = Block.create! valid_attributes
-    
-        # Block.any_instance.should_receive(:update_attributes).with({'x' => '1'})
         put :update, params: { id: block.id, block: {'x' => '1'} }
         expect(block.reload.x).to eq(1)
       end

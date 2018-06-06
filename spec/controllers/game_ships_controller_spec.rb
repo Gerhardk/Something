@@ -84,13 +84,14 @@ describe GameShipsController do
     describe "with valid params" do
       it "assigns the requested game_ship as @game_ship" do
         game_ship = GameShip.create! valid_attributes
-        post :update, xhr: true, params: {:id => game_ship.id, :game_ship => valid_attributes}
+        post :update, xhr: true, params: {:id => game_ship.id, :game_ship => {:hit_count => 1 }}
         expect(assigns(:game_ship)).to eq(game_ship)
+        expect(game_ship.reload.hit_count).to eq(1)
       end
 
       it "redirects to the game_ship" do
         game_ship = GameShip.create! valid_attributes
-        post :update, xhr: true, params: {:id => game_ship.id, :game_ship => valid_attributes}
+        post :update, xhr: true, params: {:id => game_ship.id, :game_ship => {:hit_count => 10}}
         expect(response).to render_template(:register)
       end
     end
