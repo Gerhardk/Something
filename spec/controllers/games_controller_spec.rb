@@ -36,7 +36,7 @@ describe GamesController do
     it "assigns the requested game as @game" do
       game = Game.create! valid_attributes
       get :edit, params: { :id => game.id }
-      assigns(:game).should eq(game)
+      expect(assigns(:game)).to eq(game)
     end
   end
 
@@ -81,20 +81,20 @@ describe GamesController do
     describe "with valid params" do
       it "updates the requested game" do
         game = Game.create! valid_attributes
-        Game.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => game.id, :game => {'these' => 'params'}
+        put :update, params: {:id => game.id, :game => {'name' => 'params'}}
+        expect(game.reload.name).to eq('params')
       end
 
       it "assigns the requested game as @game" do
         game = Game.create! valid_attributes
-        put :update, :id => game.id, :game => valid_attributes
-        assigns(:game).should eq(game)
+        put :update, params: {:id => game.id, :game => valid_attributes}
+        expect(assigns(:game)).to eq(game)
       end
 
       it "redirects to the game" do
         game = Game.create! valid_attributes
-        put :update, :id => game.id, :game => valid_attributes
-        response.should redirect_to(games_path)
+        put :update, params: {:id => game.id, :game => valid_attributes}
+        expect(response).to redirect_to(games_path)
       end
     end
 
@@ -102,17 +102,17 @@ describe GamesController do
       it "assigns the game as @game" do
         game = Game.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
-        put :update, :id => game.id, :game => {}
-        assigns(:game).should eq(game)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
+        put :update, params: { id: game.id, game: { ship_id: "Hello"} }
+        expect(assigns(:game)).to eq(game)
       end
 
       it "re-renders the 'edit' template" do
         game = Game.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
-        put :update, :id => game.id, :game => {}
-        response.should render_template("edit")
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
+        put :update, params: { id: game.id, game: { ship_id: "Hello"} }
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -121,14 +121,14 @@ describe GamesController do
     it "destroys the requested game" do
       game = Game.create! valid_attributes
       expect {
-        delete :destroy, :id => game.id
+        delete :destroy, params: { :id => game.id }
       }.to change(Game, :count).by(-1)
     end
 
     it "redirects to the games list" do
       game = Game.create! valid_attributes
-      delete :destroy, :id => game.id
-      response.should redirect_to(games_url)
+      delete :destroy, params: { :id => game.id }
+      expect(response).to redirect_to(games_url)
     end
   end
 
@@ -137,9 +137,9 @@ describe GamesController do
     it "assigns the game as @game" do
         game = Game.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
-        get :battle, :id => game.id
-        assigns(:game).should eq(game)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
+        get :battle, params: {:id => game.id}
+        expect(assigns(:game)).to eq(game)
     end
   end
 
@@ -147,13 +147,12 @@ describe GamesController do
     it "should respond with json data" do
       game = Game.create! valid_attributes
       # Trigger the behavior that occurs when invalid params are submitted
-      Game.any_instance.stub(:save).and_return(false)
+      allow_any_instance_of(Game).to receive(:save).and_return(false)
       VCR.use_cassette('game_request', :record => :new_episodes) do
-        get :register, :id => game.id
-
+        get :register, params: {:id => game.id}
       end
-      assigns(:game).should eq(game)
-      response.should redirect_to(battle_game_path(game))
+      expect(assigns(:game)).to eq(game)
+      expect(response).to redirect_to(battle_game_path(game))
     end
   end
 end

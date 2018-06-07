@@ -53,6 +53,7 @@ group :development,:test do
   gem 'representative'
   gem 'guard-rspec'
   #gem 'guard-livereload'
-  gem 'fakeweb'
+  gem 'webmock'
+  gem 'vcr'
   gem 'pry'
 end

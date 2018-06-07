@@ -1,26 +1,32 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :post
-    uri: http://battle.platform45.com:80/register
-    body: "{\"name\":\"Gerhard\",\"email\":\"rgkoek@yahoo.com\"}"
-    headers: 
-      content-type: 
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://battle.platform45.com/register
+    body:
+      encoding: UTF-8
+      string: '{"name":"Gerhard","email":"rgkoek@yahoo.com"}'
+    headers:
+      Content-Type:
       - application/json
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - nginx/0.7.67
-      date: 
+      Date:
       - Fri, 02 Dec 2011 11:22:32 GMT
-      content-type: 
+      Content-Type:
       - application/json
-      connection: 
+      Connection:
       - keep-alive
-      content-length: 
-      - "12"
-    body: "{\"id\":\"622\"}"
-    http_version: "1.1"
+      Content-Length:
+      - '12'
+    body:
+      encoding: UTF-8
+      string: '{"id":"622"}'
+    http_version: '1.1'
+  recorded_at: Fri, 23 Feb 2018 10:17:34 GMT
+recorded_with: VCR 4.0.0

@@ -7,7 +7,8 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-FakeWeb.allow_net_connect = false
+require 'webmock/rspec'
+require 'vcr'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -30,8 +31,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.before(:each) do
-    FakeWeb.clean_registry
+  VCR.config do |c|
+    c.cassette_library_dir = 'vcr/cassettes'
+    c.stub_with :webmock
   end
 
   config.include FactoryBot::Syntax::Methods

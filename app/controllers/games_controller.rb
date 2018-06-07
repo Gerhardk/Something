@@ -53,12 +53,17 @@ class GamesController < ApplicationController
 
   def update
     @game = find_game
-    if @game.update_attributes(params[:game])
-
+    if @game.update_attributes(game_params)
       redirect_to games_path
     else
       render :edit
     end
+  end
+
+  def destroy
+    find_game.destroy
+
+     redirect_to games_path
   end
 
   private
