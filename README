@@ -1,7 +1,7 @@
 == Welcome to Battleships Game(I run it on Ubuntu)
 I use Postgresql for the database because I am comfortable with it.
 I use the following gems to do my testing:
-  Rspec for normal testing. Fakeweb for mocking http://url.
+  Rspec for normal testing. Webmock for mocking http://url.
   Vcr to record the needed requests.
   Simplecov to see the code coverage.
   Factory_Girl for the factories.

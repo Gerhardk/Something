@@ -1,8 +1,7 @@
 require 'net/http'
-
 require 'rubygems'
 require 'json'
-class NukesController < InheritedResources::Base
+class NukesController < ApplicationController
 
   def create
 

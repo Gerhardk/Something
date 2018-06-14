@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/Something
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: Something
+          RAILS_ENV: test
+      - image: postgres:9.5
+        environment:
+          POSTGRES_USER: gerhardk19
+          POSTGRES_DB: battleships_test
+          POSTGRES_PASSWORD: rails
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: Something-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: Something-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: bundle exec rake db:setup
+      - run: bundle exec rspec

@@ -1,7 +1,10 @@
-class GamesController < InheritedResources::Base
+class GamesController < ApplicationController
+  def index
+    @games = Game.all
+  end
 
   def show
-    @game = Game.find(params[:id])
+    @game = find_game
 
     flash[:notice] = "Place your ships"
     @game_ships = GameShip.where(:game_id => @game.id)
@@ -28,30 +31,49 @@ class GamesController < InheritedResources::Base
     @game =Game.find(params[:id])
   end
 
-  def create
-    @game = Game.create(params[:game])
-    if @game.valid?
+  #FIXME: THIS IS A TEST
+  def new
+    @game = Game.new
+  end
 
-      redirect_to game_path(@game)
+  def create
+    @game = Game.create(game_params)
+    if @game.valid?
+      redirect_to @game
     else
       render :new
     end
   end
 
   def nuke
+  end
 
+  def edit
+    @game = find_game
   end
 
   def update
-    @game = Game.find(params[:id])
-    if @game.update_attributes(params[:game])
-
+    @game = find_game
+    if @game.update_attributes(game_params)
       redirect_to games_path
     else
       render :edit
     end
-
   end
 
+  def destroy
+    find_game.destroy
 
+     redirect_to games_path
+  end
+
+  private
+
+  def find_game
+    Game.find(params[:id])
+  end
+
+  def game_params
+    params.require(:game).permit(:email, :name)
+  end
 end

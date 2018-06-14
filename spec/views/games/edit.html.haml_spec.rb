@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "games/edit.html.haml" do
   before(:each) do

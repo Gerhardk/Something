@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 
 describe "Register" do
@@ -9,7 +9,7 @@ describe "Register" do
   describe "GET /register" do
 
     it "fetches the content form request" do
-      FakeWeb.register_uri(:post, "http://example.com/", :body =>({:status => "hit", :x => 0, :y => 0}).to_json)
+      stub_request(:post, "http://example.com/", :body =>({:status => "hit", :x => 0, :y => 0}).to_json)
       game = Game.create! valid_attributes
       # Trigger the behavior that occurs when invalid params are submitted
       Game.any_instance.stub(:save).and_return(false)

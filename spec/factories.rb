@@ -1,38 +1,37 @@
-Factory.define(:ship) do |f|
-  f.name "Carrier"
-  f.length 5
-  f.max_per_game 1
+FactoryBot.define do 
+  factory :ship do 
+    name 'Carrier'
+    length 5
+    max_per_game 1
+  end
 
-end
+  factory :game do
+    email 'rgkoek@yahoo.com'
+    name 'Gerhard Koekemoer'
+    server_game_id 1098
+    server_hits 0
+    client_hits 0
+  end
 
-Factory.define(:game) do |f|
-  f.email "rgkoek@yahoo.com"
-  f.name "Gerhard Koekemoer"
-  f.server_game_id 1098
-  f.server_hits 0
-  f.client_hits 0
-end
+  factory :game_ship, class: GameShip do
+    game
+    ship
+    hit_count 0
+    orientation "horizontal"
+    sunk false
+    x 0
+    y 0
+  end
 
-Factory.define(:game_ship) do |f|
-  f.association :game
-  f.association :ship
-  f.hit_count 0
-  f.orientation "horizontal"
-  f.sunk false
-  f.x 0
-  f.y 0
+  factory :nuke do 
+    game
+    x 4
+    y 4
+  end
 
-end
-
-Factory.define(:nuke) do |f|
-  f.association :game
-  f.x 4
-  f.y 4
-end
-
-Factory.define(:block) do |f|
-  f.sequence(:x) {|n| n}
-  f.sequence(:y) {|n| n}
-  f.association :game
-
+  factory :block do
+    game
+    sequence(:x) {|n| n }
+    sequence(:y) {|n| n }
+  end
 end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "GameShips" do
   describe "GET /game_ships" do
