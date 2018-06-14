@@ -31,6 +31,7 @@ class GamesController < ApplicationController
     @game =Game.find(params[:id])
   end
 
+  #FIXME: THIS IS A TEST
   def new
     @game = Game.new
   end
